@@ -1,4 +1,4 @@
-package com.ixuea.superui.date
+package com.ixuea.superui.util
 
 import android.content.Context
 import android.content.res.Configuration

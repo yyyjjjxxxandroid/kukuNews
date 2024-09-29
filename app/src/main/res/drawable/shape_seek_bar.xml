@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--背景-->
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="?attr/colorDivider" />
+            <corners android:radius="@dimen/round_small" />
+            <size android:height="@dimen/d1" />
+        </shape>
+    </item>
+
+    <!--第二进度-->
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <solid android:color="@color/black80" />
+                <corners android:radius="@dimen/round_small" />
+                <size android:height="@dimen/d1" />
+            </shape>
+        </clip>
+    </item>
+
+    <!--进度-->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <solid android:color="@color/black140" />
+                <corners android:radius="@dimen/round_small" />
+                <size android:height="@dimen/d1" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

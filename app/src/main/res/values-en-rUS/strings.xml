@@ -1,0 +1,426 @@
+<resources>
+    <string name="app_name">News</string>
+
+    <string name="video">Video</string>
+    <string name="chat">Chat</string>
+    <string name="category">Category</string>
+
+    <string name="comments_count">%1$d Comments</string>
+    <string name="reply">Reply</string>
+    <string name="reply_count">%1$d replies</string>
+    <string name="show_reply_count">Show %1$d replies</string>
+    <string name="comments_count2">Comments %1$d</string>
+    <string name="other_count">%1$d Like | 12 Forward</string>
+    <string name="comment_tip">Friendly comments</string>
+    <string name="search_tip">Search or enter a url</string>
+    <string name="reply_comment">%1$s(Author): %2$s</string>
+    <string name="publish">Publish</string>
+    <string name="reply_hint">Replies %1$s</string>
+    <string name="heart_solid">Like</string>
+
+    <!--视频-->
+    <string name="video_info">%1$s Playbacks, by %2$s</string>
+    <string name="count_format_ten_thousand">%1$d万</string>
+    <string name="count_format_hundred_thousand">%1$d十万</string>
+    <string name="count_format_million">%1$d百万</string>
+
+    <string name="video_created_at">Publisher：%1$s</string>
+    <string name="video_clicks_count">Playbacks：%1$d</string>
+    <string name="play_failed_time_out">Playback timed out. Please try again later</string>
+    <string name="play_failed">Playback failed. Please try again later</string>
+    <string name="play_completion">Playing complete, click to play again</string>
+
+    <!--商城-->
+    <string name="price">￥%1$.2f</string>
+    <string name="price_int">￥%1d</string>
+    <string name="activity_shop_detail">Product Details</string>
+    <string name="go_study">Learn Now</string>
+    <string name="success_buy">Already purchased</string>
+    <string name="activity_order_detail">Order details</string>
+    <string name="go_pay">To pay</string>
+    <string name="error_pay_channel">Payment channel error</string>
+    <string name="hint_pay_wait">Payment confirmation</string>
+    <string name="error_pay_cancel">Payment cancellation</string>
+    <string name="error_pay_failed">Payment failed</string>
+    <string name="buy_count">%1$d person purchase</string>
+    <string name="reset">Resetting</string>
+    <string name="change_style">Switch Style</string>
+    <string name="collect_coupon">Collecting coupon</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="add_cart">Add cart</string>
+    <string name="add_cart_success">Successfully added to shopping cart</string>
+    <string name="product">Product</string>
+    <string name="detail">Details</string>
+    <string name="discovery">Discovery</string>
+    <string name="valid_until">%1$s expire</string>
+    <string name="get_now">Collect Now</string>
+    <string name="received">Received</string>
+    <string name="total">Amount：</string>
+    <string name="settle_account">Settlement</string>
+    <string name="settle_account_count">Settlement(%1$d)</string>
+    <string name="product_total_price">Total price</string>
+    <string name="freight">Freight</string>
+    <string name="free_freight">Free Shipping</string>
+    <string name="no_available">No available</string>
+    <string name="no_coupon">No coupons available</string>
+    <string name="total_count">%1$d pieces in total：</string>
+    <string name="available_count">%1$d available</string>
+    <string name="confirm_order">Confirm order</string>
+    <string name="confirm_cancel_order">Are you sure to cancel the order?</string>
+    <string name="order_detail">Order details</string>
+    <string name="pay_order">Payment Order</string>
+    <string name="confirm_pay_price">Confirm the payment</string>
+    <string name="pay_remaining_time">Payment remaining time %1$s</string>
+    <string name="payment_before">Please complete payment before %1$s</string>
+    <string name="alipay">Alipay</string>
+    <string name="wechat">WeChat</string>
+    <string name="huabei_stages">Huabei stages</string>
+    <string name="confirm_exit_pay">Are you sure to waive payment?</string>
+    <string name="confirm_exit_pay_message">After the order payment deadline is exceeded, the order will be cancelled</string>
+    <string name="confirm_departure">Confirm departure</string>
+    <string name="continue_pay">Continue payment</string>
+    <string name="cancel_order">Cancellation order</string>
+    <string name="delete_order">Delete Order</string>
+    <string name="change_address">Modify Address</string>
+    <string name="evaluate">Comment</string>
+    <string name="whole">All</string>
+    <string name="wait_pay">Wait Pay</string>
+    <string name="order_close">Closed</string>
+    <string name="wait_shipped">Shipped</string>
+    <string name="wait_received">Received</string>
+    <string name="wait_comment">Comment</string>
+    <string name="amount_pay">Payable amount</string>
+    <string name="order_time">Order time</string>
+    <string name="order_no">Order number</string>
+    <string name="order_source">Order Source</string>
+    <string name="pay_platform">Payment Platform</string>
+    <string name="pay_channel">Payment channels</string>
+    <string name="recognition_address_tip">粘贴文本，可以自动识别姓名，电话和地址\n例如：四川省成都市天府新区牧华路远大中央公园9栋1单元801 李薇 13141111222</string>
+    <string name="recognition">Recognition</string>
+    <string name="receive_name">Receiving Name</string>
+    <string name="receive_telephone">Receiving phone</string>-
+    <string name="receive_area">Receiving region</string>
+    <string name="detail_address">Address</string>
+    <string name="default_address">Default Address</string>
+    <string name="enter_receive_name">Please enter the receiving name</string>
+    <string name="enter_receive_telephone">Please enter receiving phone</string>
+    <string name="enter_receive_area">Please select receiving</string>
+    <string name="enter_detail_address">Please enter detailed address</string>
+    <string name="select_address">Please select shipping address</string>
+    <string name="ocr_error">Baidu OCR error：%1$s，error code：%2$d</string>
+    <string name="voice_input">Voice input</string>
+    <string name="stop_voice_input">Stop voice input</string>
+    <string name="voice_error_no_result">No recognition results, please speak louder and avoid noisy environments</string>
+    <string name="voice_error">Baidu voice recognition error：%1$s</string>
+    <string name="product_count">x%1$d</string>
+    <string name="retry">Retrying</string>
+    <string name="customer_service">Service</string>
+    <string name="default_address_text">[Default]</string>
+    <string name="refund">Refund</string>
+
+    <string name="loading">Loading</string>
+    <string name="upload_failed">Upload failed, please try again later</string>
+    <string name="loading_upload">Upload the %1$d image</string>
+
+    <string name="error_server_unknown_code">Unknown server error code：%1$d</string>
+    <string name="error_network">Network connection not available</string>
+    <string name="error_network_not_connect">Your network doesn\'t seem to be doing well</string>
+    <string name="error_connect_server">Connecting to the server failed</string>
+    <string name="error_not_auth">Login information has expired</string>
+    <string name="error_not_permission">Do not have permission to access</string>
+    <string name="error_not_found">The accessed content does not exist</string>
+    <string name="error_server">Server Error</string>
+    <string name="error_unknown_host">Unable to find host</string>
+    <string name="error_network_timeout">Network connection timeout</string>
+    <string name="error_unknown">Unknown Error</string>
+    <string name="error_illegal_argument">Parameter error</string>
+    <string name="enter_nickname">Enter nickname (2-10 digits)</string>
+    <string name="enter_name">Please enter a name</string>
+    <string name="enter_phone">Please enter phone number</string>
+    <string name="enter_phone_or_email">Enter phone or email</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_confirm_password">Enter confirmation password</string>
+    <string name="enter_code">Verification code</string>
+    <string name="error_nickname_format">Nickname format is incorrect</string>
+    <string name="error_phone_format">Phone format is incorrect</string>
+    <string name="error_email_format">Email format is incorrect</string>
+    <string name="error_confirm_password_format">Confirm password format is incorrect</string>
+    <string name="error_confirm_password">The password was incorrect twice</string>
+    <string name="error_load">Loading failed</string>
+    <string name="enter_password">Enter password (6-15 digits)</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+
+    <string name="error_username_format">Username format is incorrect</string>
+    <string name="error_password_format">password format is incorrect</string>
+    <string name="register_and_login">Register and login</string>
+
+    <string name="complete">Complete</string>
+    <string name="please_enter">Please enter</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
+    <string name="login_or_register">Login or Register</string>
+    <string name="login_error">Login failed</string>
+    <string name="code_login">Login with code</string>
+    <string name="username_login">Login username and password</string>
+    <string name="login_now">Login Now</string>
+    <string name="logout">Log out</string>
+    <string name="register">Register Now</string>
+
+    <!--用户协议-->
+    <string name="term_service_privacy">Service Terms and Privacy Agreement</string>
+    <string name="agree">Agree</string>
+    <string name="disagree">Disagree and exit</string>
+
+    <string name="ad_click_tip">Click to jump details view more</string>
+    <string name="skip_ad_count">Skip %1$d</string>
+    <string name="not_found_activity">Unable to find app</string>
+    <string name="wifi_preload">WiFi preloading</string>
+
+
+    <string name="experience_now">Experience Now</string>
+
+    <string name="user_agreement">
+        <Data><![CDATA[
+        By logging in, you agree《<a href="http://www.ixuea.com/articles/4449">User Agreement</a>》And《<a href="http://www.ixuea.com/articles/4467">Privacy Policy</a>》
+        ]]> </Data>
+    </string>
+
+    <string name="term_service_privacy_end" translatable="false">
+        <Data><![CDATA[
+            </body>
+            </html>
+        ]]> </Data>
+    </string>
+
+    <string name="term_service_privacy_content">
+        <Data><![CDATA[
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;本软件尊重并保护所有使用服务用户的个人隐私权。为了给您提供更准确、更有个性化的服务，本软件会按照本隐私权政策的规定使用和披露您的个人信息。但本软件将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本软件不会将这些信息对外披露或向第三方提供。本软件会不时更新本隐私权政策。请你认真阅读并了解《<a href="http://www.ixuea.com/articles/4449">服务条款</a>》和《<a href="http://www.ixuea.com/articles/4467">隐私政策</a>》，您在同意本软件服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本软件服务使用协议不可分割的一部分。</p>
+
+        <p>1.适用范围</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;1.1 在您使用本软件网络服务，本软件自动接收并记录的您的手机上的信息，包括但不限于您的健康数据、使用的语言、访问日期和时间、软硬件特征信息及您需求的网页记录等数据；</p>
+
+        <p>2.信息的使用</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;2.1 在获得您的数据之后，本软件会将其上传至服务器，以生成您的排行榜数据，以便您能够更好地使用服务。</p>
+
+        <p>3.信息披露</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;3.1 本软件不会将您的信息披露给不受信任的第三方。</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;3.2 根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;3.3 如您出现违反中国有关法律、法规或者相关规则的情况，需要向第三方披露；</p>
+
+        <p>4. 信息存储和交换</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;本软件收集的有关您的信息和资料将保存在本软件及（或）其关联公司的服务器上，这些信息和资料可能传送至您所在国家、地区或本软件收集信息和资料所在地的境外并在境外被访问、存储和展示。</p>
+
+        <p>5.信息安全</p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;在使用本软件网络服务进行网上交易时，您不可避免的要向交易对方或潜在的交易对方披露自己的个人信息，如联络方式或者邮政地址。请您妥善保护自己的个人信息，仅在必要的情形下向他人提供。如您发现自己的个人信息泄密，请您立即联络本软件客服，以便本软件采取相应措施。</p>
+    ]]> </Data>
+    </string>
+    <string name="buy_vip">Buy VIP</string>
+    <string name="member_center">Member Center</string>
+    <string name="vip_hint">Join VIP highlight differences</string>
+    <string name="vip_hint_price">Costs 0.01 First month!</string>
+    <string name="my_friend">My friend</string>
+    <string name="my_fans">My Fans</string>
+    <string name="coupon">Coupon</string>
+    <string name="short_video">Short Video</string>
+    <string name="my_code">My QR code</string>
+    <string name="shop">Product</string>
+    <string name="mall">Official Mall</string>
+    <string name="shop_cart">Cart</string>
+    <string name="my_order">My Order</string>
+    <string name="other">Other</string>
+    <string name="setting">Settings</string>
+    <string name="dark_mode">Night mode</string>
+    <string name="timed_off">Scheduled shutdown</string>
+    <string name="person_dress">Personalized dressing</string>
+    <string name="cache_while_list">Listen caching</string>
+    <string name="music_alarm_clock">Music alarm clock</string>
+
+    <string name="my_customer_service">Service</string>
+    <string name="share_app">Share App</string>
+    <string name="about">About</string>
+    <string name="about_code">About(Code Layout)</string>
+    <string name="not_open">Disable</string>
+
+    <!--单聊通知 未读消息数大于1-->
+    <string name="message_notification_count">[%1$d Messages]：%2$s</string>
+
+    <string name="channel_chat_message">Message Notification</string>
+    <string name="channel_music">Music notifications</string>
+    <string name="channel_default">Default Notification</string>
+    <string name="confirm_logout">Are you sure to exit?</string>
+    <string name="close_app">Close app</string>
+
+    <string name="hint_title">Please enter title</string>
+    <string name="hint_content">Please enter content</string>
+    <string name="current_position">Current Position</string>
+    <string name="not_show_position">Disable display position</string>
+    <string name="hint_current_position">Location：</string>
+    <string name="hint_count">0/1000</string>
+    <string name="error_content_length">The content cannot exceed 1000 characters</string>
+    <string name="feed_count">%1$d/1000</string>
+    <string name="error_upload_image">Error uploading image</string>
+    <string name="message_no_format">Number：%1$s</string>
+
+    <!--我的资料-->
+    <string name="edit">Edit</string>
+    <string name="my_profile">My Profile</string>
+    <string name="save">Save</string>
+    <string name="avatar">Avatar</string>
+    <string name="nickname">Nickname</string>
+    <string name="gender">Gender</string>
+    <string name="birthday">Birthday</string>
+    <string name="area">Area</string>
+    <string name="description">Introduction</string>
+    <string name="hint_description">Please introduce yourself to everyone</string>
+    <string name="phone">Phone number</string>
+    <string name="email">Email</string>
+    <string name="third_account">third-party account</string>
+    <string name="qq">QQ</string>
+    <string name="bind">Bind</string>
+    <string name="unbind">unbind</string>
+    <string name="weibo">Weibo</string>
+    <string name="select_gender">Select gender</string>
+    <string name="success_bind">Bind successfully</string>
+    <string name="bind_error">Bind failed</string>
+    <string name="confirm_unbind">Are you sure to unbind?</string>
+    <string name="success_unbind">unbind successfully</string>
+    <string name="add">Add</string>
+
+    <!--二维码-->
+    <string name="hint_scan_my_code">Use App scan to follow me</string>
+    <string name="hint_scan_code">Put code in the box to scan</string>
+    <string name="error_not_support_qrcode_format">The format is not supported</string>
+
+
+    <!--设置-->
+    <string name="network">Network</string>
+    <string name="play_mobile_network">Use mobile network to play</string>
+    <string name="play_mobile_network_summary_on">Mobile network playback has been turned on, please pay attention to traffic consumption to avoid extra charges</string>
+    <string name="play_mobile_network_summary_off">Mobile network playback is turned off</string>
+    <string name="play_mobile_network_alert">Currently in the mobile network, whether to play automatically</string>
+    <string name="download_mobile_network">Use mobile network to download</string>
+    <string name="play_mobile_network_summary">This is more description</string>
+    <string name="hint_network_play_disable">Mobile network playback has been disabled, you can set the interface to open</string>
+    <string name="current_version">Current version</string>
+    <string name="version_value">V%1$s-%2$d</string>
+
+    <!--扫码-->
+    <string name="no_result">No content</string>
+    <string name="error_empty_qrcode">The QR code has no content</string>
+    <string name="san_result">Scan result</string>
+    <string name="scan">Scan</string>
+    <string name="success_save">Saved successfully</string>
+
+    <!--用户详细-->
+    <string name="content">Content</string>
+    <string name="user_friend_info">following %1$d&#160;&#160;&#160;|&#160;&#160;&#160;Follower %2$d</string>
+    <string name="follow">Follow</string>
+    <string name="cancel_follow">Cancel follow</string>
+    <string name="send_message">Send message</string>
+    <string name="person_info">Personal information</string>
+    <string name="nickname_value">Nickname：%1$s</string>
+    <string name="gender_value">Gender：%1$s</string>
+    <string name="birthday_value">Birthday：%1$s</string>
+    <string name="area_value">Area：%1$s</string>
+    <string name="area_value2">%1$s-%2$s-%3$s</string>
+    <string name="more_info">More information</string>
+    <string name="more">More</string>
+    <string name="description_value">Personal description：%1$s</string>
+    <string name="confirm">Confirm</string>
+    <string name="me">My</string>
+
+    <string name="my_message">My message</string>
+
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
+
+    <string name="duration_minute">%1$d minutes</string>
+    <string name="cache">Cache</string>
+    <string name="ask">FAQ</string>
+    <string name="remind">Remind</string>
+
+
+    <string name="comprehensive">Comprehensive</string>
+    <string name="price_desc">Price descending</string>
+    <string name="price_asc">Price ascending</string>
+    <string name="id_asc">Id ascending</string>
+
+    <string name="brand">Brand</string>
+
+    <string name="receiving_address">Receiving address</string>
+    <string name="receiving_address_detail">Receiving address details</string>
+    <string name="success_delete">Delete successfully</string>
+
+    <string name="select_province">Select province</string>
+    <string name="select_city">Select City</string>
+    <string name="select_area">Select area</string>
+
+    <string name="confirm_delete">Are you sure to delete?</string>
+    <string name="select_all">Select all</string>
+
+    <string name="selected">Selected</string>
+    <string name="sent_to">Sent to</string>
+    <string name="store">Store</string>
+    <string name="default_spec">Default Spec</string>
+
+    <string name="hint_search_user">Nickname, Pinyin</string>
+
+    <!--验证码-->
+    <string name="send_code">Send</string>
+    <string name="verification_code">Enter code</string>
+    <string name="verification_code_sent_to">The verification code has been sent to %1$s</string>
+    <string name="resend">Resend</string>
+    <string name="resend_count">Resend after %1$ds</string>
+    <string name="error_code_format">Code format is incorrect</string>
+
+    <string name="search_poi">Search for places</string>
+    <string name="no_data">No data</string>
+    <string name="select_location_address">%1$dm | %2$s</string>
+
+    <!--导航-->
+    <string name="map_tencent">Tencent map</string>
+    <string name="map_baidu">Baidu map</string>
+    <string name="map_amap">Amap</string>
+    <string name="map_sogou">Sogou map</string>
+    <string name="select_location_navigation">Select a navigation app</string>
+    <string name="not_install_map">Please install the map software</string>
+    <string name="error_search_poi">Search failed</string>
+
+    <string name="send">Send</string>
+    <string name="waterfall_flow">Waterfall flow</string>
+
+    <string name="hint_enter_message">Enter message</string>
+    <string name="error_message_login">Failed to log in to the chat server, you can try to register a new account, if you still have problems, contact customer service</string>
+
+    <string name="function_introduction">Function Introduction</string>
+    <string name="about_us">About Ixuea</string>
+    <string name="create_exception">Trigger an exception</string>
+    <string name="report_exception">Manually report exception</string>
+
+    <string name="update">Update</string>
+    <string name="update_title">Upgrade %1$s version</string>
+    <string name="current_latest_version">Currently the latest version</string>
+    <string name="download_apk_tip">The download task is added successfully, and the installation interface will be displayed automatically after the download is complete</string>
+    <string name="share">Share</string>
+    <string name="error_share_failed">Share failed, please try again later</string>
+    <string name="article">Article</string>
+    <string name="user">User</string>
+
+    <string name="hot_search">Hot Search</string>
+    <string name="search_history">Search History</string>
+    <string name="from_address">From %1$s</string>
+
+    <string name="error_load_conversation_list">Load conversation failed</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>
