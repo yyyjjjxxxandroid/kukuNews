@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".component.splash.TermServiceDialogFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".component.splash.TermServiceDialogFragment"
+    android:padding="@dimen/padding_large">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,6 +15,36 @@
     android:textColor="?attr/colorOnSurface"
     android:textSize="@dimen/text_large"
     android:textStyle="bold"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="@dimen/padding_large">
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/d15"
+            android:textColor="?attr/colorOnSurface"
+            android:text="@string/term_service_privacy_content"/>
+
+    </ScrollView>
+<com.google.android.material.button.MaterialButton
+    android:id="@+id/primary"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d55"
+    android:layout_marginTop="@dimen/d20"
+    android:text="@string/agree"
+    app:cornerRadius="@dimen/d27_5"/>
+<Button
+    android:id="@+id/disagree"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/d44"
+    android:layout_marginTop="@dimen/d10"
+    android:background="@color/transparent"
+    android:textColor="@color/black80"
+    android:text="@string/disagree"
+    android:textSize="@dimen/d13"/>
 
 
 </LinearLayout>
