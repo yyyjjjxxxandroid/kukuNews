@@ -19,14 +19,14 @@ import com.ixuea.superui.SuperProcessUtil
 import com.ixuea.superui.util.ScreenUtil
 import com.ixuea.superui.util.SuperTextUtil
 import com.ixuea.courses.mymusic.component.splash.SplashActivity
+import com.ixuea.courses.mymusic.databinding.FragmentTermServiceDialogBinding
+import com.ixuea.courses.mymusic.fragment.BaseViewModelDialogFragment
 
 /*
 * 对话框
 * */
-class TermServiceDialogFragment : BaseCommonFragment() {
-    private lateinit var disagree:Button
-    private lateinit var agree:TextView
-    private lateinit var contentView:TextView
+class TermServiceDialogFragment : BaseViewModelDialogFragment<FragmentTermServiceDialogBinding>() {
+
     private lateinit var onAgreementClickListener: View.OnClickListener
     //如果父类中有抽象方法，那么子类必须实现父类中的所有抽象方法，否则子类也必须声明为抽象类。
     companion object {
@@ -35,9 +35,7 @@ class TermServiceDialogFragment : BaseCommonFragment() {
          */
         fun show(fragmentManager: FragmentManager, onAgreementClickListener: View.OnClickListener) {
             val dialogFragment = TermServiceDialogFragment()
-
             dialogFragment.onAgreementClickListener = onAgreementClickListener
-
             dialogFragment.show(fragmentManager, "TermServiceDialogFragment")
         }
     }
@@ -45,16 +43,12 @@ class TermServiceDialogFragment : BaseCommonFragment() {
         super.initViews()
         //点击外部不消失
         setCancelable(false)
-        contentView=findViewById(R.id.content)
-        SuperTextUtil.setLinkColor(contentView,getColor(requireContext(),R.color.link))
-        agree=findViewById(R.id.primary)
-         disagree=findViewById(R.id.disagree)
-
+        SuperTextUtil.setLinkColor(binding.content,getColor(requireContext(),R.color.link))
     }
 
     override fun initListeners() {
         super.initListeners()
-        agree.setOnClickListener {
+        binding.primary.setOnClickListener {
             //设置同意了用户协议
             DefaultPreferenceUtil.getInstance(requireContext()).setAcceptTermsServiceAgreement()
 
@@ -62,7 +56,7 @@ class TermServiceDialogFragment : BaseCommonFragment() {
             dismiss()
             onAgreementClickListener.onClick(it)
         }
-        disagree.setOnClickListener {
+        binding.disagree.setOnClickListener {
            dismiss()
             SuperProcessUtil.killApp()
         }
@@ -73,7 +67,7 @@ class TermServiceDialogFragment : BaseCommonFragment() {
         //<a href="链接地址">文本内容</a>这种格式的 HTML 标记在使用Html.fromHtml()方法解析后，会被识别为可点击的超链接。
         // 当用户点击包含这种超链接的文本时，系统会自动启动一个意图（Intent）来打开默认浏览器并导航到指定的链接地址。
         val content=Html.fromHtml(getString(R.string.term_service_privacy_content))
-        contentView.text=content
+        binding.content.text=content
     }
     //onResume当 Fragment 开始与用户交互时被调用。在这个阶段，Fragment 处于活动状态，可以接收用户输入和处理事件。可以在这个方法中进行一些与显示相关的操作，例如调整对话框的大小。
 
@@ -86,12 +80,4 @@ class TermServiceDialogFragment : BaseCommonFragment() {
         params.height=ViewGroup.LayoutParams.WRAP_CONTENT
         dialog!!.window!!.attributes=params as WindowManager.LayoutParams
     }
-    override fun getLayoutView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_term_service_dialog,container,false)
-    }
-
 }
