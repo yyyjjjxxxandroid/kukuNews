@@ -1,20 +1,17 @@
 plugins {
-    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
-    namespace 'com.ixuea.courses.mymusic'
+    namespace 'com.ixuea.k'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.ixuea.courses.mymusic"
         minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -30,24 +27,13 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding {
-        enabled=true
-    }
 }
 
 dependencies {
 
-    //权限框架
-    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
-    //UI框架
-    implementation 'com.qmuiteam:qmui:2.1.0'
-    //引用模块 :代表News根目录
-    implementation project(":super-k")
     implementation libs.androidx.core.ktx
     implementation libs.androidx.appcompat
     implementation libs.material
-    implementation libs.androidx.activity
-    implementation libs.androidx.constraintlayout
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core

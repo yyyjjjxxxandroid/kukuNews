@@ -11,6 +11,7 @@ import com.ixuea.courses.mymusic.activity.BaseLogicActivity
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
 import com.ixuea.courses.mymusic.databinding.ActivitySplashBinding
 import com.ixuea.courses.mymusic.util.DefaultPreferenceUtil
+import com.ixuea.k.util.StringUtil
 import com.ixuea.superui.util.SuperDarkUtil
 import com.ixuea.superui.date.SuperDateUtil
 import com.permissionx.guolindev.PermissionX
@@ -26,7 +27,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
         const val TAG = "SplashActivity"
     }
     //lateinit：用于延迟初始化非空类型的变量。
-    private lateinit var  copyrightView: TextView
+//    private lateinit var  copyrightView: TextView
 
     override fun initViews() {
         super.initViews()
@@ -38,7 +39,8 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
             //状态栏文字黑色
             QMUIStatusBarHelper.setStatusBarLightMode(this)
         }
-        copyrightView=binding.textView
+//        copyrightView=findViewById(R.id.textView)
+
 
     }
 
@@ -88,7 +90,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
                 }, 1000)
             } else {
                 //可以在这里弹出提示告诉用户为什么需要权限
-             
+
                 finish()
             }
         }
