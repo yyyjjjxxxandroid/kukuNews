@@ -4,3 +4,11 @@ alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.androidLibrary) apply false
 }
+//扩展配置
+//相当于定义常量
+//只是我们这里定义的常量是在gradle文件中引用
+//而不是在java文件中引用
+ext {
+    //目标版本
+    targetSdk = 31
+}

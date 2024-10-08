@@ -23,7 +23,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/copyright"
+        android:text="广东海洋大学大学 物联网工程1221 杨杰轩"
         android:textSize="10dp"
         android:textColor="@color/black"
         android:layout_alignParentBottom="true"
