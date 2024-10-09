@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+   <LinearLayout
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <View
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_weight="1"/>
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/login_or_register"
+           android:minWidth="@dimen/d130"
+           android:layout_width="wrap_content"
+           android:text="@string/login_or_register"
+
+           app:cornerRadius="@dimen/round_small"
+           style="@style/SuperButton.Primary"
+          />
+       <View
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_weight="1"/>
+       <com.google.android.material.button.MaterialButton
+           android:id="@+id/experience_now"
+           style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+           android:layout_width="wrap_content"
+           android:layout_height="@dimen/d55"
+           android:backgroundTint="?attr/colorLightWhite"
+           android:minWidth="@dimen/d130"
+           android:text="@string/experience_now"
+           android:textColor="@color/black80"
+           android:textSize="@dimen/s13"
+           app:strokeColor="?attr/colorPrimary"
+           app:strokeWidth="@dimen/d1"
+           />
+       <View
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_weight="1"/>
+   </LinearLayout>
+
+</LinearLayout>

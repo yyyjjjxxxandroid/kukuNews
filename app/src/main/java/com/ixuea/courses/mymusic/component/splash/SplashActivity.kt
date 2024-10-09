@@ -1,6 +1,7 @@
 package com.ixuea.courses.mymusic.component.splash
 
 import android.Manifest
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -9,8 +10,10 @@ import android.widget.TextView
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseLogicActivity
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
+import com.ixuea.courses.mymusic.component.guide.GuideActivity
 import com.ixuea.courses.mymusic.databinding.ActivitySplashBinding
 import com.ixuea.courses.mymusic.util.DefaultPreferenceUtil
+import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.k.util.StringUtil
 import com.ixuea.superui.util.SuperDarkUtil
 import com.ixuea.superui.date.SuperDateUtil
@@ -94,8 +97,14 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
                 finish()
             }
         }
-    }    private fun prepareNext(){
-        Log.d("yjx", "prepareNext: ")
+    }
+    private fun prepareNext(){
+       if (PreferenceUtil.isShowGuide()){
+           startActivityAfterFinishThis(GuideActivity::class.java)
+           return
+       }
+        //跳转到下一个界面
+      startActivityAfterFinishThis(GuideActivity::class.java)
     }
 
 

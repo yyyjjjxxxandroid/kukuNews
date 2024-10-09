@@ -38,19 +38,16 @@ android {
 }
 
 dependencies {
-
+     //腾讯开源的高性能keyValue存储，用来替代系统的SharedPreferences
+    //https://github.com/Tencent/MMKV
+    implementation 'com.tencent:mmkv-static:1.2.16'
     //权限框架
     implementation 'com.guolindev.permissionx:permissionx:1.7.1'
     //UI框架
     implementation 'com.qmuiteam:qmui:2.1.0'
     //引用模块 :代表News根目录
     implementation project(":super-k")
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.material
     implementation libs.androidx.activity
     implementation libs.androidx.constraintlayout
-    testImplementation libs.junit
-    androidTestImplementation libs.androidx.junit
-    androidTestImplementation libs.androidx.espresso.core
+
 }
