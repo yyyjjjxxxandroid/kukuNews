@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.ixuea.courses.mymusic.util.ReflectUtil
 
-abstract class BaseViewModelDialogFragment<VB : ViewBinding> : BaseCommonDialogFragment() {
-    private var _binding: VB? = null
+abstract class BaseViewModelFragment<VB : ViewBinding> : BaseLogicFragment() {
+    var _binding: VB? = null
     protected val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {

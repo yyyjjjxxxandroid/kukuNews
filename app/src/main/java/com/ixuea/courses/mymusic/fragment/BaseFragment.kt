@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IdRes
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 
 /**
- * 所有DialogFragment对话框父类
+ * 所有Fragment父类
  */
-abstract class BaseDialogFragment : DialogFragment() {
+abstract class BaseFragment : Fragment() {
     /**
      * 找控件
      */
@@ -58,9 +57,5 @@ abstract class BaseDialogFragment : DialogFragment() {
         initViews()
         initDatum()
         initListeners()
-    }
-
-    fun <T : View?> findViewById(@IdRes id: Int): T {
-        return requireView().findViewById(id)
     }
 }
