@@ -17,7 +17,7 @@ class GuideAdapter(val context: Context,fragmentManager: FragmentManager):
     }
 
     override fun getItem(position: Int): Fragment {
-        Log.d("GuideAdapter", "getItem:${position} ")
+
               return GuideFragment.newInstance(datum[position])
     }
 /*

@@ -11,6 +11,13 @@ android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"/>
+    <me.relex.circleindicator.CircleIndicator
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/guide_indicator_height"
+        android:id="@+id/indicator"
+        app:ci_drawable="@drawable/shape_color_primary"
+        app:ci_drawable_unselected="@drawable/shape_circle_light_grey"/>
+
    <LinearLayout
        android:layout_marginBottom="@dimen/d10"
        android:orientation="horizontal"

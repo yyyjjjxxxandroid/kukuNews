@@ -7,8 +7,6 @@ import com.ixuea.courses.mymusic.util.PreferenceUtil
 
 /**
  * 左右滚动的引导界面
- * 如果想实现更复杂的效果，例如：滚动时文本缩放等效果，可以使用类似这样的框架：
- * https://github.com/bingoogolapple/BGABanner-Android
  */
 class GuideActivity:BaseViewModelActivity<ActivityGuideBinding>() {
     private lateinit var adapter: GuideAdapter
@@ -17,6 +15,10 @@ class GuideActivity:BaseViewModelActivity<ActivityGuideBinding>() {
 //apply函数调用链的一部分，它允许在创建对象后对其进行进一步的配置或初始化操作。
         adapter=GuideAdapter(this,supportFragmentManager)
         binding.list.adapter=adapter
+        //让指示器和ViewPager关联
+        binding.indicator.setViewPager(binding.list)
+        //适配器注册数据观察者
+        adapter.registerDataSetObserver(binding.indicator.dataSetObserver)
         val datum:MutableList<Int> = mutableListOf()
         datum.add(R.drawable.guide1)
         datum.add(R.drawable.guide2)
