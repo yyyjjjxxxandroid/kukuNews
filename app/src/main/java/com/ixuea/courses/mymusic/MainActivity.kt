@@ -5,11 +5,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
+import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
+import com.ixuea.courses.mymusic.databinding.ActivityMainBinding
+import com.ixuea.courses.mymusic.util.Constant
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
+    override fun initDatum() {
+        super.initDatum()
+        val action=intent.action
+        if(action== Constant.ACTION_LOGIN){
+            startActivity(LoginHomeActivity::class.java)
+        }
     }
 }

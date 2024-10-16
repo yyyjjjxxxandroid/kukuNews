@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.TextView
+import com.ixuea.courses.mymusic.BuildConfig
+import com.ixuea.courses.mymusic.MainActivity
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseLogicActivity
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
@@ -34,6 +36,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
     override fun initViews() {
         super.initViews()
+        //设置沉浸式状态栏
         QMUIStatusBarHelper.translucent(this)
         if (SuperDarkUtil.isDark(this)) {
             //状态栏文字白色
@@ -99,17 +102,17 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
         }
     }
     private fun prepareNext(){
-       if (PreferenceUtil.isShowGuide()){
+//       if (PreferenceUtil.isShowGuide()){
            startActivityAfterFinishThis(GuideActivity::class.java)
            return
-       }
+//       }
         //跳转到下一个界面
-      startActivityAfterFinishThis(GuideActivity::class.java)
+      startActivityAfterFinishThis(MainActivity::class.java)
     }
 
 
     private fun showTermsServiceAgreementDialog() {
-        //快捷键*2弹出全局搜索
+        //shift快捷键*2弹出全局搜索
 //        TermServiceDialogFragment.show(supportFragmentManager,object : View.OnClickListener{
 //            override fun onClick(v: View?) {
 //                Log.d(TAG, "primary onClick")
