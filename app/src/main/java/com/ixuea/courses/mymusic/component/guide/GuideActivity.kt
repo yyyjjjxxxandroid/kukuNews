@@ -3,7 +3,7 @@ package com.ixuea.courses.mymusic.component.guide
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
-import com.ixuea.courses.mymusic.MainActivity
+import com.ixuea.courses.mymusic.component.main.MainActivity
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
 import com.ixuea.courses.mymusic.component.api.DefaultNetworkService
@@ -56,9 +56,9 @@ class GuideActivity:BaseViewModelActivity<ActivityGuideBinding>() {
         //立即体验
         binding.experienceNow.setOnClickListener {
             setShowGuide()
-//            startActivityAfterFinishThis(MainActivity::class.java)
+            startActivityAfterFinishThis(MainActivity::class.java)
 //            testGet()
-            testRetrofitGet()
+//            testRetrofitGet()
         }
     }
 

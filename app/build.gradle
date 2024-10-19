@@ -79,6 +79,11 @@ android {
 }
 
 dependencies {
+    //类似TabLayout的控件
+    //https://github.com/angcyo/DslTabLayout
+    implementation 'com.github.angcyo.DslTablayout:TabLayout:3.5.3'
+    implementation 'com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3'
+
     implementation libs.androidx.lifecycle.lifecycle.livedata.ktx4
     implementation libs.androidx.lifecycle.viewmodel.android
     //region 请求网络相关

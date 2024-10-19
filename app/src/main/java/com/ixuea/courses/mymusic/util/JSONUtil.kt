@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder
  * JSON工具类
  */
 object JSONUtil {
+    //Gson 是 Google 开发的一个 Java 库，用于将 Java 对象转换为 JSON 字符串，以及将 JSON 字符串转换为 Java 对象。
     fun createGson(): Gson {
         val gsonBuilder = GsonBuilder()
 

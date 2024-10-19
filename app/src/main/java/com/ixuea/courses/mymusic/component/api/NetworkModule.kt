@@ -56,6 +56,11 @@ object NetworkModule {
             .client(okHttpClient) //api地址
             .baseUrl(Config.ENDPOINT) //使用gson解析json
             //包括请求参数和响应
+            //addConverterFactory方法用于注册一个数据转换器工厂
+            //GsonConverterFactory是 Retrofit 提供的一个转换器工厂，它依赖于 Gson 库来进行 JSON 数据的转换。
+            //这个工厂的作用是在 Retrofit 进行网络请求和接收响应时，
+            // 自动将 JSON 格式的数据转换为指定的 Java 或 Kotlin 对象，以及将对象转换为 JSON 格式的数据进行发送。
+            //JSONUtil.createGson()创建一个特定配置的 Gson 对象
             .addConverterFactory(GsonConverterFactory.create(JSONUtil.createGson())) //创建retrofit
             .build()
     }

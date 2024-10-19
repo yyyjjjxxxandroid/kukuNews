@@ -1,7 +1,6 @@
-package com.ixuea.courses.mymusic.adater
+package com.ixuea.courses.mymusic.adapter
 
 import android.content.Context
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 /*

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--region 标题容器-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+      >
+
+        <!-- 搜索容器-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/padding_outer"
+            android:paddingVertical="@dimen/padding_small">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/menu"
+                android:layout_width="@dimen/d30"
+                android:layout_height="@dimen/d30"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_launcher"
+                app:shapeAppearanceOverlay="@style/RoundedCornerImageStyle" />
+
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_outer"
+                android:layout_weight="1"
+                android:background="@drawable/shape_edit_text_surface"
+                android:gravity="center"
+                android:padding="@dimen/d8"
+                android:text="@string/search_tip"
+                android:textColor="@color/black66" />
+
+            <ImageView
+                android:id="@+id/add"
+                android:layout_width="@dimen/d32"
+                android:layout_height="@dimen/d32"
+                android:src="@drawable/publish" />
+        </LinearLayout>
+    </LinearLayout>
+      <!--endregion 标题容器-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/padding_meddle">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/indicator"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d40"
+            android:layout_weight="1"
+            app:tabIndicatorColor="?attr/colorPrimary"
+            android:background="?android:attr/colorBackground"
+           
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="?attr/colorPrimary"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabTextColor="@color/black45" />
+
+        <ImageView
+            android:layout_width="@dimen/d30"
+            android:layout_height="@dimen/d30"
+            android:layout_marginLeft="@dimen/padding_meddle"
+            android:src="@drawable/baseline_menu" />
+    </LinearLayout>
+
+    <com.ixuea.courses.mymusic.view.NestedScrollableHost
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           />
+    </com.ixuea.courses.mymusic.view.NestedScrollableHost>
+</LinearLayout>

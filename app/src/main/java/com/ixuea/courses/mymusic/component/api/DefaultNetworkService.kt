@@ -28,6 +28,8 @@ interface DefaultNetworkService {
                 return NetworkModule.provideRetrofit(NetworkModule.provideOkHttpClient())
                     //使用 Retrofit 实例创建一个实现了DefaultNetworkService接口的对象。
                     .create(DefaultNetworkService::class.java)
+                //一旦有了 Retrofit 对象，就可以使用它的 create 方法来创建一个实现了 DefaultNetworkService 接口的实例。
+            // 这意味着可以通过这个实例调用在 DefaultNetworkService 接口中定义的网络请求方法，如 contents 和 contentDetail。
             }
         }
     }

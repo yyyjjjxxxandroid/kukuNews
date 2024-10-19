@@ -45,8 +45,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:name=".component.main.MainActivity"
+            android:exported="false" />
         <activity
             android:name=".component.guide.GuideActivity"
             android:exported="false" />
