@@ -79,6 +79,16 @@ android {
 }
 
 dependencies {
+    //apache common lang3工具包
+    //提供了StringUtils等这样的类
+    //http://commons.apache.org/proper/commons-lang/
+    implementation 'org.apache.commons:commons-lang3:3.8'
+
+    //封装了RecyclerView
+    //提供更高层次的接口
+    //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta04"
+
     //类似TabLayout的控件
     //https://github.com/angcyo/DslTabLayout
     implementation 'com.github.angcyo.DslTablayout:TabLayout:3.5.3'

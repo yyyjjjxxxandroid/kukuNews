@@ -10,8 +10,8 @@ abstract class BaseLogicFragment : BaseCommonFragment() {
      *
      * @return
      */
-//    protected val hostActivity: BaseLogicActivity
-//        protected get() = requireActivity() as BaseLogicActivity
+    protected val hostActivity: BaseLogicActivity
+        protected get() = requireActivity() as BaseLogicActivity
 //
 //
 //    /**

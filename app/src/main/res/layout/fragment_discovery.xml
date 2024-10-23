@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="true"
       >
 
         <!-- 搜索容器-->
@@ -63,7 +64,7 @@
             android:layout_weight="1"
             app:tabIndicatorColor="?attr/colorPrimary"
             android:background="?android:attr/colorBackground"
-           
+
             app:tabMode="scrollable"
             app:tabSelectedTextColor="?attr/colorPrimary"
             app:tabTextAppearance="@style/TabLayoutTextStyle"
