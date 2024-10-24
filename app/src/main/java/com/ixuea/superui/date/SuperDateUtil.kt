@@ -1,5 +1,7 @@
 package com.ixuea.superui.date
 
+import com.ixuea.superui.date.SuperDateUtil.yyyyMMddHHmm
+import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -77,52 +79,52 @@ object SuperDateUtil {
      * @param date
      * @return
      */
-//    fun commonFormat(date: String?): String {
-//        //将字符串转为DateTime
-//        val dateTime = DateTime(date)
-//        return commonFormat(dateTime)
-//    }
+    fun commonFormat(date: String?): String {
+        //将字符串转为DateTime
+        val dateTime = DateTime(date)
+        return commonFormat(dateTime)
+    }
 
     /**
      * 将DateTime转为项目中通用的格式
-     *
+     *方法命一样参数不一样=重载
      * @param dateTime
      * @return
      */
-//    private fun commonFormat(dateTime: DateTime): String {
-//        //计算和现在时间的差
-//        //单位毫秒
-//        val value = Date().time - dateTime.toDate().time
-//        if (value < 1L * ONE_MINUTE) {
-//            //小于1分钟
-//
-//            //显示多少秒前
-//            val data = toSeconds(value)
-//            return String.format("%d秒前", if (data <= 0) 1 else data)
-//        } else if (value < 60 * ONE_MINUTE) {
-//            //小于1小时
-//
-//            //显示多少分钟前
-//            val data = toMinutes(value)
-//            return String.format("%d分钟前", data)
-//        } else if (value < 24 * ONE_HOUR) {
-//            //小于1天
-//
-//            //显示多少小时前
-//            val data = toHours(value)
-//            return String.format("%d小时前", data)
-//        } else if (value < 30 * ONE_DAY) {
-//            //小于1月
-//
-//            //显示多少天前
-//            val data = toDays(value)
-//            return String.format("%d天前", data)
-//        }
-//
-//        //其他时间
-//        //格式化为yyyyMMddHHmm
-//        return yyyyMMddHHmm(dateTime)
-//    }
+    private fun commonFormat(dateTime: DateTime): String {
+        //计算和现在时间的差
+        //单位毫秒
+        val value = Date().time - dateTime.toDate().time
+        if (value < 1L * ONE_MINUTE) {
+            //小于1分钟
+
+            //显示多少秒前
+            val data = toSeconds(value)
+            return String.format("%d秒前", if (data <= 0) 1 else data)
+        } else if (value < 60 * ONE_MINUTE) {
+            //小于1小时
+
+            //显示多少分钟前
+            val data = toMinutes(value)
+            return String.format("%d分钟前", data)
+        } else if (value < 24 * ONE_HOUR) {
+            //小于1天
+
+            //显示多少小时前
+            val data = toHours(value)
+            return String.format("%d小时前", data)
+        } else if (value < 30 * ONE_DAY) {
+            //小于1月
+
+            //显示多少天前
+            val data = toDays(value)
+            return String.format("%d天前", data)
+        }
+
+        //其他时间
+        //格式化为yyyyMMddHHmm
+        return yyyyMMddHHmm(dateTime)
+    }
 
     /**
      * 将时间戳转为项目中通用的格式
@@ -130,11 +132,11 @@ object SuperDateUtil {
      * @param data
      * @return
      */
-//    fun commonFormat(data: Long): String {
-//        //解析时间戳
-//        val dateTime = DateTime(data)
-//        return commonFormat(dateTime)
-//    }
+    fun commonFormat(data: Long): String {
+        //解析时间戳
+        val dateTime = DateTime(data)
+        return commonFormat(dateTime)
+    }
 
     /**
      * 将DateTime转为yyyy-MM-dd HH:mm
@@ -142,10 +144,10 @@ object SuperDateUtil {
      * @param dateTime
      * @return
      */
-//    fun yyyyMMddHHmm(dateTime: DateTime): String {
-//        //格式化日期
-//        return dateTime.toString(yyyyMMddHHmm)
-//    }
+    fun yyyyMMddHHmm(dateTime: DateTime): String {
+        //格式化日期
+        return dateTime.toString(yyyyMMddHHmm)
+    }
 
     /**
      * 将ISO8601字符串转为yyyy-MM-dd HH:mm
@@ -153,11 +155,11 @@ object SuperDateUtil {
      * @param date
      * @return
      */
-//    fun yyyyMMddHHmm(date: String): String {
-//        //将字符串转为DateTime
-//        val dateTime = DateTime(date)
-//        return yyyyMMddHHmm(dateTime)
-//    }
+    fun yyyyMMddHHmm(date: String): String {
+        //将字符串转为DateTime
+        val dateTime = DateTime(date)
+        return yyyyMMddHHmm(dateTime)
+    }
 
     /**
      * 将ISO8601字符串转为yyyy-MM-dd HH:mm:ss
@@ -165,13 +167,13 @@ object SuperDateUtil {
      * @param data
      * @return
      */
-//    fun yyyyMMddHHmmss(data: String): String {
-//        //将字符串转为DateTime
-//        val dateTime = DateTime(data)
-//
-//        //格式化
-//        return dateTime.toString(yyyyMMddHHmmss)
-//    }
+    fun yyyyMMddHHmmss(data: String): String {
+        //将字符串转为DateTime
+        val dateTime = DateTime(data)
+
+        //格式化
+        return dateTime.toString(yyyyMMddHHmmss)
+    }
 
     /**
      * 时间戳转为
@@ -189,14 +191,14 @@ object SuperDateUtil {
      *
      * @return
      */
-//    fun nowyyyyMMddHHmmss(): String {
-//        //将字符串转为DateTime
-//        val dateTime = DateTime()
-//        return dateTime.toString(yyyyMMddHHmmss)
-//    }
+    fun nowyyyyMMddHHmmss(): String {
+        //将字符串转为DateTime
+        val dateTime = DateTime()
+        return dateTime.toString(yyyyMMddHHmmss)
+    }
 
     /**
-     * 转为秒
+     * 毫秒转为秒
      *
      * @param date
      * @return
@@ -206,7 +208,7 @@ object SuperDateUtil {
     }
 
     /**
-     * 转为分钟
+     * 毫秒转为分钟
      *
      * @param date
      * @return
@@ -216,7 +218,7 @@ object SuperDateUtil {
     }
 
     /**
-     * 转为小时
+     * 毫秒转为小时
      *
      * @param date
      * @return
@@ -226,7 +228,7 @@ object SuperDateUtil {
     }
 
     /**
-     * 转为天
+     * 毫秒转为天
      *
      * @param date
      * @return
@@ -236,7 +238,7 @@ object SuperDateUtil {
     }
 
     /**
-     * 转为月
+     * 毫秒转为月
      *
      * @param date
      * @return

@@ -52,12 +52,14 @@ class ContentAdapter : BaseQuickAdapter<Content, ContentAdapter.ViewHolder>() {
 
             binding.commentsCount.text=binding.commentsCount.context.getString(R.string.comments_count,data.commentsCount)
 
+            binding.date.text= SuperDateUtil.commonFormat(data.createdAt)
+
             binding.videoContainer.visibility= View.GONE
 
             if (StringUtils.isNotBlank(data.uri)){
                 //视屏和视频时长
                 binding.videoContainer.visibility= View.VISIBLE
-                   ImageUtil.showImage(binding.icon,data.icons?.get(0))
+                ImageUtil.showImage(binding.icon,data.icons?.get(0))
                 binding.duration.text= SuperDateUtil.s2ms(data.duration)
             }
         }

@@ -79,6 +79,10 @@ android {
 }
 
 dependencies {
+    //更方便的日期时间，运算，解析格式化框架
+    //https://www.joda.org/joda-time/index.html
+    implementation 'joda-time:joda-time:2.12.2'
+
     //图片加载框架，还引用他目的是，coil图片加载框架
     //https://github.com/bumptech/glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
