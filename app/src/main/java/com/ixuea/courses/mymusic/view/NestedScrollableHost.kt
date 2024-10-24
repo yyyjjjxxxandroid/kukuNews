@@ -28,6 +28,7 @@ import kotlin.math.absoluteValue
 import kotlin.math.sign
 
 /**
+ * 两个viewpager嵌套处理！！！！！！！！！！！！
  * Layout to wrap a scrollable component inside a ViewPager2. Provided as a solution to the problem
  * where pages of ViewPager2 have nested scrollable elements that scroll in the same direction as
  * ViewPager2. The scrollable element needs to be the immediate and only child of this host layout.

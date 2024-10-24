@@ -79,6 +79,12 @@ android {
 }
 
 dependencies {
+    //图片加载框架，还引用他目的是，coil图片加载框架
+    //https://github.com/bumptech/glide
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+
     //apache common lang3工具包
     //提供了StringUtils等这样的类
     //http://commons.apache.org/proper/commons-lang/

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.databinding.ItemContentBinding
+import com.ixuea.courses.mymusic.util.ImageUtil
 import com.ixuea.superui.date.SuperDateUtil
 import org.apache.commons.lang3.StringUtils
 
@@ -56,7 +57,7 @@ class ContentAdapter : BaseQuickAdapter<Content, ContentAdapter.ViewHolder>() {
             if (StringUtils.isNotBlank(data.uri)){
                 //视屏和视频时长
                 binding.videoContainer.visibility= View.VISIBLE
-
+                   ImageUtil.showImage(binding.icon,data.icons?.get(0))
                 binding.duration.text= SuperDateUtil.s2ms(data.duration)
             }
         }
