@@ -21,7 +21,7 @@
         <!-- tab bar控件背景 -->
         <item name="colorTabBar">?android:attr/colorBackground</item>
 
-        <!-- 分割线 -->
+        <!--recyclerview 分割线 -->
         <item name="android:listDivider">@drawable/shape_divider</item>
 
         <!-- 状态栏颜色 -->

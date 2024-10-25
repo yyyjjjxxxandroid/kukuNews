@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ixuea.courses.mymusic.databinding.FragmentContentBinding
 import com.ixuea.courses.mymusic.fragment.BaseViewModelFragment
@@ -19,6 +20,9 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
         super.initViews()
         binding.list.apply {
             layoutManager= LinearLayoutManager(hostActivity)
+            //代码中分割线
+            val decoration=DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL)
+            addItemDecoration(decoration)
         }
     }
     override fun initDatum() {
