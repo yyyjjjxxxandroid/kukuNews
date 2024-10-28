@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
     private lateinit var viewModel: ContentViewModel
     private lateinit var adapter: ContentAdapter
+    private var isFirstLoad:Boolean=true
     override fun initViews() {
         super.initViews()
         binding.list.apply {
@@ -40,13 +41,23 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
                 adapter.submitList(it.data)
             }
         }
-        //准备工作做好以后加载数据
-        viewModel.loadMore()
-        //例如这里请求数据就直接请求，就是mvc
-        //mvvm请求数据的逻辑要放到单独一个类中，然后activity和fragment就不再写过多的逻辑，只写与界面相关的逻辑
+
 //       这个就是传统写法直接请求 lifecycleScope.launch {
 //            DefaultNetworkRepository.contents()
 //        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //arguments本质上是一个Bundle对象，Bundle类用于存储键值对，就像一个简单的存储数据的容器。
+        if (isFirstLoad){
+            //准备工作做好以后加载数据
+            //例如这里请求数据就直接请求，就是mvc
+            //mvvm请求数据的逻辑要放到单独一个类中，然后activity和fragment就不再写过多的逻辑，只写与界面相关的逻辑
+            viewModel.loadMore()
+            isFirstLoad=false
+        }
+
     }
     companion object{
         fun newInstance(categoryId:String?=null):ContentFragment {
