@@ -1,6 +1,7 @@
 package com.ixuea.courses.mymusic.component.api
 
 
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.ixuea.courses.mymusic.AppContext
 import com.ixuea.courses.mymusic.config.Config
 import com.ixuea.courses.mymusic.util.JSONUtil
@@ -41,6 +42,9 @@ object NetworkModule {
 
             //添加到网络框架中
             okhttpClientBuilder.addInterceptor(loggingInterceptor)
+
+            //添加chucker实现应用内显示网络请求拦截器
+            okhttpClientBuilder.addInterceptor(ChuckerInterceptor.Builder(AppContext.instance).build())
         }
         return okhttpClientBuilder.build()
     }

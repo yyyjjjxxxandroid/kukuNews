@@ -79,6 +79,12 @@ android {
 }
 
 dependencies {
+    //通过OkHttp的拦截器机制
+    //实现在应用通知栏显示网络请求功能
+    //https://github.com/ChuckerTeam/chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+
     //集合工具类
     // https://mvnrepository.com/artifact/org.apache.commons/commons-collections4
     implementation 'org.apache.commons:commons-collections4:4.4'
