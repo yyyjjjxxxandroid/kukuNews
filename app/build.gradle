@@ -79,10 +79,24 @@ android {
 }
 
 dependencies {
+    //region 下拉刷新，上来加载更多
+    //下拉刷新框架
+    //https://github.com/scwang90/SmartRefreshLayout
+    implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'
+    implementation 'io.github.scwang90:refresh-header-classics:2.0.5'     //经典刷新头
+    implementation 'io.github.scwang90:refresh-footer-classics:2.0.5'    //经典加载头
+    //endregion
+
+    //类似微信图片预览框架
+    //https://github.com/wanglu1209/PhotoViewer
+    implementation 'com.github.wanglu1209:PhotoViewer:0.50'
+
     //通过OkHttp的拦截器机制
     //实现在应用通知栏显示网络请求功能
     //https://github.com/ChuckerTeam/chucker
+    //调试模式下
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    //打包模式时release（发行、发布；释放；解脱）
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
     //集合工具类

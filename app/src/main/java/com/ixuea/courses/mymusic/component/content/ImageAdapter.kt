@@ -25,4 +25,5 @@ class ImageAdapter :BaseQuickAdapter<String,QuickViewHolder>(){
     ): QuickViewHolder {
         return QuickViewHolder(R.layout.item_image,parent)
     }
+
 }

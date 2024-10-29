@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils
 
 
 /*内容适配器*/
-class ContentAdapter : BaseQuickAdapter<Content, ContentAdapter.ViewHolder>() {
+class ContentAdapter(val viewModel: ContentViewModel) : BaseQuickAdapter<Content, ContentAdapter.ViewHolder>() {
 
     /*
     * 绑定数据
@@ -42,8 +42,8 @@ class ContentAdapter : BaseQuickAdapter<Content, ContentAdapter.ViewHolder>() {
     ): ViewHolder {
         return ViewHolder(ItemContentBinding.inflate(LayoutInflater.from(context),parent,false))
     }
-//定义viewHolder内部类，这个ViewHolder类继承自RecyclerView.ViewHolder类。在构造函数中，将binding.root传递给父类的构造函数。
-    class ViewHolder(val binding: ItemContentBinding) : RecyclerView.ViewHolder (binding.root){
+//定义viewHolder，这个ViewHolder类继承自RecyclerView.ViewHolder类。构造函数中，将binding.root传递给父类的构造函数。内部类想访问要加上inner
+  inner class ViewHolder(val binding: ItemContentBinding) : RecyclerView.ViewHolder (binding.root){
         //显示数据
         fun bindData(data: Content) {
             if (StringUtils.isNotBlank(data.title)){
@@ -88,7 +88,10 @@ class ContentAdapter : BaseQuickAdapter<Content, ContentAdapter.ViewHolder>() {
                 val itemDecoration=GridDividerItemDecoration(binding.list.context,
                     DensityUtil.dip2px(binding.list.context,5f).toInt())
                 binding.list.addItemDecoration(itemDecoration)
-                val adapter=ImageAdapter()
+                var adapter=ImageAdapter()
+                adapter.setOnItemClickListener{adapter,view,position->
+                    viewModel.previewMedias(binding.list,data.icons!!,position)
+                }
                 binding.list.adapter=adapter
                 adapter.submitList(data.icons!!)
 

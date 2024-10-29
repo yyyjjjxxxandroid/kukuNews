@@ -5,11 +5,28 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
-
+<com.scwang.smart.refresh.layout.SmartRefreshLayout
+    android:id="@+id/refresh"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+ android:layout_weight="1">
+ <com.scwang.smart.refresh.header.ClassicsHeader
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+    app:srlEnableLastTime="false"
+  app:srlTextSizeTitle="@dimen/s13"
+  app:srlDrawableArrowSize="@dimen/d10"
+  app:srlDrawableProgressSize="@dimen/d13"/>
  <androidx.recyclerview.widget.RecyclerView
      android:id="@+id/list"
      tools:listitem="@layout/item_content"
      tools:itemCount="5"
      android:layout_width="match_parent"
      android:layout_height="match_parent"/>
+ <com.scwang.smart.refresh.footer.ClassicsFooter
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     app:srlTextSizeTitle="@dimen/s13"
+  app:srlDrawableProgressSize="@dimen/d13"/>
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </LinearLayout>
