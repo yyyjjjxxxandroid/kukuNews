@@ -15,6 +15,7 @@ interface DefaultNetworkService {
         //挂起函数suspend 不可以直接调用 需要放到协程里面直接调用
         suspend fun contents(
             @Query(value = "last") last: String?,
+            @Query(value = "category_id") categoryId: String?,
             @Query(value = "user_id") userId: String?,
             @Query(value = "size") size: Int,
             @Query(value = "style") style: Int?=null,

@@ -29,12 +29,12 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
     }
     override fun initDatum() {
         super.initDatum()
-
-        viewModel=ViewModelProvider(this).get(ContentViewModel::class.java)
+        //这里传的是tab中fragment的id
+        val viewModelFactory=ContentViewModelFactory(requireArguments().getString(Constant.ID))
+        viewModel=ViewModelProvider(this,viewModelFactory).get(ContentViewModel::class.java)
         //适配器
-       adapter= ContentAdapter(viewModel)
+        adapter= ContentAdapter(viewModel)
         binding.list.adapter=adapter
-
         //观察viewmodel里面的flow，如果他的数据变更了，就会触发这个回调
         lifecycleScope.launch {
             viewModel.data.collect(){

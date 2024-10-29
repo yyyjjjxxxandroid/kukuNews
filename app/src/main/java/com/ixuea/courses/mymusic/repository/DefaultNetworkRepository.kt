@@ -17,10 +17,11 @@ object DefaultNetworkRepository {
      }
  suspend fun contents(
    last:String?=null,
+   categoryId:String?=null,
     userId:String?=null,
      size:Int=10,
    style:Int?=null
  ):ListResponse<Content>{
-     return service.contents(last,userId,size,style)
+     return service.contents(last,categoryId,userId,size,style)
  }
 }
