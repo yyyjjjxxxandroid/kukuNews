@@ -14,7 +14,7 @@ class ImageAdapter :BaseQuickAdapter<String,QuickViewHolder>(){
     override fun onBindViewHolder(holder: QuickViewHolder, position: Int, data: String?) {
         data?.let {
             val iconView=holder.getView<ImageView>(R.id.icon)
-            ImageUtil.showImage(iconView,data)
+            ImageUtil.show(iconView,data)
         }
     }
 

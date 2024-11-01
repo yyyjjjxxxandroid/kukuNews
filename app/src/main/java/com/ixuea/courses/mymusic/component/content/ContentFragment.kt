@@ -1,15 +1,17 @@
 package com.ixuea.courses.mymusic.component.content
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.collect.Lists
 import com.ixuea.courses.mymusic.databinding.FragmentContentBinding
 import com.ixuea.courses.mymusic.fragment.BaseViewModelFragment
-import com.ixuea.courses.mymusic.repository.DefaultNetworkRepository
 import com.ixuea.courses.mymusic.util.Constant
+import com.ixuea.courses.mymusic.util.ImageUtil
+import com.wanglu.photoviewerlibrary.PhotoViewer
 import kotlinx.coroutines.launch
 import org.apache.commons.lang3.StringUtils
 
@@ -37,7 +39,7 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
         binding.list.adapter=adapter
         //观察viewmodel里面的flow，如果他的数据变更了，就会触发这个回调
         lifecycleScope.launch {
-            viewModel.data.collect(){
+            viewModel.data.collect(){ it ->
                 //数据处理
                   if (StringUtils.isBlank(viewModel.lastId)){
                       //下拉刷新 没有传lastId所以为空的会走到这里 “替换”
@@ -52,8 +54,42 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
       //将数据设置进去，它只会更新数据发生变化的部分视图，避免了像notifyDataSetChanged那样重新创建和绑定所有视图。adapter.submitList(it.data)
             }
         }
+        lifecycleScope.launch {
+            viewModel.previewMedia.collect {
+                previewMedias(it)
+            }
+        }
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED){
+//                viewModel.toArticleDetail.collect{
+//                    Log.d("ContentFragment","跳转到文章详情界面")
+//                }
+//            }
+//        }
 //       这个就是传统写法直接请求 lifecycleScope.launch { DefaultNetworkRepository.contents()     }
     }
+    private fun previewMedias(data: PreviewMediaPageData) {
+        //将List转为ArrayList
+        //因为图片框架需要的是ArrayList
+        val medias = Lists.newArrayList<String>(data.medias)
+
+        PhotoViewer.setData(medias)
+            //设置当前位置
+            .setCurrentPage(data.position)
+            //他需要容器的目的是显示缩放动画
+            .setImgContainer(data.view)
+            //设置图片加载回调
+            .setShowImageViewInterface(object : PhotoViewer.ShowImageViewInterface {
+                override fun show(iv: ImageView, url: String) {
+                    ImageUtil.show(
+                        iv,
+                        url
+                    )
+                }
+            }) //启动界面
+            .start(this)
+    }
+
     private fun processRefreshAndLoadMoreStatus(success:Boolean,onMore:Boolean=false){
         //传入false表刷新失败
         binding.refresh.finishRefresh(500,success,false)
@@ -92,9 +128,11 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
     companion object{
         fun newInstance(categoryId:String?=null):ContentFragment {
             val args = Bundle()
+
             categoryId?.let {
                 args.putString(Constant.ID,it)
             }
+
             val fragment = ContentFragment()
             fragment.arguments = args
             return fragment

@@ -66,7 +66,7 @@ class ContentAdapter(val viewModel: ContentViewModel) : BaseQuickAdapter<Content
                 //视屏和视频时长
                 binding.videoContainer.visibility= View.VISIBLE
 
-                ImageUtil.showImage(binding.icon,data.icons?.get(0))
+                ImageUtil.show(binding.icon,data.icons?.get(0))
                 binding.duration.text= SuperDateUtil.s2ms(data.duration) }
             //这么写有性能影响，每次滚动的时候，都会去这么设置，此处可以优化后续来处理 可以把适配器缓存起来
             else if (CollectionUtils.isNotEmpty(data.icons)){
