@@ -29,35 +29,35 @@ open class BaseLogicActivity:BaseCommonActivity() {
     //在这个例子中，name 属性有一个访问器。当读取 name 属性时，
 // 访问器会将属性值转换为大写后返回。
 
-//    /**
-//     * 初始化通用ViewModel逻辑
-//     */
-//    protected fun initViewModel(viewModel: BaseViewModel) {
-//        //关闭界面
-//        viewModel.finishPage.observe(this) {
-//            finish()
-//        }
-//
-//        //本地提示
-//        viewModel.tip.observe(this) {
-//            onTip(it)
-//        }
-//
-//        //异常
-//        viewModel.exception.observe(this) {
-//            onException(it)
-//        }
-//
-//        //网络响应业务失败
-//        viewModel.response.observe(this) {
-//            onResponse(it)
-//        }
-//
-//        //加载提示
+    /**
+     * 初始化通用ViewModel逻辑
+     */
+    protected fun initViewModel(viewModel: BaseViewModel) {
+        //关闭界面
+        viewModel.finishPage.observe(this) {
+            finish()
+        }
+
+        //本地提示
+        viewModel.tip.observe(this) {
+            onTip(it)
+        }
+
+        //异常
+        viewModel.exception.observe(this) {
+            onException(it)
+        }
+
+        //网络响应业务失败
+        viewModel.response.observe(this) {
+            onResponse(it)
+        }
+
+        //加载提示
 //        viewModel.loading.observe(this) {
 //            if (StringUtils.isNotBlank(it)) showLoading(it) else hideLoading()
 //        }
-//    }
+    }
 
     open fun onTip(data: Int) {
         //扩展函数

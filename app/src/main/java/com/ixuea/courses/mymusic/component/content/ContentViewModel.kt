@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.component.category.Category
 import com.ixuea.courses.mymusic.entity.response.Meta
+import com.ixuea.courses.mymusic.entity.response.onSuccess
 import com.ixuea.courses.mymusic.model.BaseViewModel
 import com.ixuea.courses.mymusic.repository.DefaultNetworkRepository
 import kotlinx.coroutines.flow.Flow
@@ -43,16 +44,21 @@ class ContentViewModel(private val categoryId: String?): BaseViewModel() {
      this.lastId=lastId
      viewModelScope.launch {
          //在viewmodel里面请求到数据，
-         try {//try catch是另一种错误 异常 如没网什么的
-             val r=DefaultNetworkRepository.contents(lastId,categoryId=categoryId)
-             if(r.isSucceeded){
-                 //成功
-                 //然后把数据放在这个流里面，然后fragment就可以通过监听这个流来获取数据
-                 _data.emit(r.data!!)
-             }else{
-                 //业务错误(应该停止刷新不能一直刷新，同时告诉用户出错了)
-                 //这里的失败指的是用户名或密码错误 或者创建用户参数没有填
-                 _response.value=r
+         try {
+         //try catch是另一种错误 异常 如没网什么的
+//             val r=DefaultNetworkRepository.contents(lastId,categoryId=categoryId)
+//             if(r.isSucceeded){
+//                 //成功
+//                 //然后把数据放在这个流里面，然后fragment就可以通过监听这个流来获取数据
+//                 _data.emit(r.data!!)
+//             }else{
+//                 //业务错误(应该停止刷新不能一直刷新，同时告诉用户出错了)
+//                 //这里的失败指的是用户名或密码错误 或者创建用户参数没有填
+//                 _response.value=r
+//             }
+           //  把上面的代码封装成扩展函数
+             DefaultNetworkRepository.contents(lastId,categoryId=categoryId).onSuccess(viewModel){
+                 _data.emit(it)
              }
          } catch (e: Exception) {
             _exception.value=e
