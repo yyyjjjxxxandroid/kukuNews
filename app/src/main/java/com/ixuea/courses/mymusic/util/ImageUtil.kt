@@ -71,10 +71,8 @@ object ImageUtil {
 
             //获取通用配置
             val options: RequestOptions = getCommonRequestOptions(round)
-
-            Glide.with(view).load(
-                url
-            ).apply(options).into(view)
+          //最后，使用 Glide.with(view).load(url).apply(options).into(view) 加载并显示图片。
+            Glide.with(view).load(url).apply(options).into(view)
 
         }
     }

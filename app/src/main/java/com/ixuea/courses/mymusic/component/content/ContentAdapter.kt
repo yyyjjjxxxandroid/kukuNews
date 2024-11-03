@@ -88,7 +88,7 @@ class ContentAdapter(val viewModel: ContentViewModel) : BaseQuickAdapter<Content
                 val itemDecoration=GridDividerItemDecoration(binding.list.context,
                     DensityUtil.dip2px(binding.list.context,5f).toInt())
                 binding.list.addItemDecoration(itemDecoration)
-                var adapter=ImageAdapter()
+                val adapter=ImageAdapter()
                 adapter.setOnItemClickListener{adapter,view,position->
                     viewModel.previewMedias(binding.list,data.icons!!,position)
                 }

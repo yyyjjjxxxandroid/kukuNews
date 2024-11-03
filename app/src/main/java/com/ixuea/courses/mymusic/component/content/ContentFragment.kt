@@ -2,6 +2,7 @@ package com.ixuea.courses.mymusic.component.content
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -34,6 +35,8 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
         //这里传的是tab中fragment的id
         val viewModelFactory=ContentViewModelFactory(requireArguments().getString(Constant.ID))
         viewModel=ViewModelProvider(this,viewModelFactory).get(ContentViewModel::class.java)
+        //用来监听页面出错
+        initViewModel(viewModel)
         //适配器
         adapter= ContentAdapter(viewModel)
         binding.list.adapter=adapter
@@ -68,7 +71,7 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
 //        }
 //       这个就是传统写法直接请求 lifecycleScope.launch { DefaultNetworkRepository.contents()     }
     }
-    private fun previewMedias(data: PreviewMediaPageData) {
+    private fun previewMedias(data: ContentViewModel.PreviewMediaPageData) {
         //将List转为ArrayList
         //因为图片框架需要的是ArrayList
         val medias = Lists.newArrayList<String>(data.medias)
@@ -95,6 +98,13 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
         binding.refresh.finishRefresh(500,success,false)
         //next=null,表示没有更多数据了
         binding.refresh.finishLoadMore(500,success,onMore)
+    }
+
+    override fun onError() {
+        //只要这个界面出错了就要终止刷新
+        //如果想知道具体说明出错就重写onTip onResponse等等
+        super.onError()
+        processRefreshAndLoadMoreStatus(false)
     }
 
     override fun initListeners() {

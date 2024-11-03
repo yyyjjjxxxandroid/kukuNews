@@ -1,10 +1,14 @@
 package com.ixuea.courses.mymusic.component.content
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
+import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.component.category.Category
 import com.ixuea.courses.mymusic.entity.response.Meta
+import com.ixuea.courses.mymusic.model.BaseViewModel
 import com.ixuea.courses.mymusic.repository.DefaultNetworkRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,13 +19,17 @@ import org.apache.commons.lang3.StringUtils
 /*
 * 内容界面的viewModel
 * */
-class ContentViewModel(private val categoryId: String?):ViewModel() {
+class ContentViewModel(private val categoryId: String?): BaseViewModel() {
     //_ + private 表示内部使用的变量
     private val _data= MutableSharedFlow<Meta<Content>>()
     //这个外部使用变量，为什么定义两个？为了避免在fragment中去更改他的数据
     val data: Flow<Meta<Content>> =_data
     var lastId: String? = null
     var query: String? = null
+
+
+    //预览图片
+    data class PreviewMediaPageData(val view: RecyclerView, val medias: List<String>, val position: Int)
 
     private val _toArticleDetail = MutableSharedFlow<String>()
     val toArticleDetail: SharedFlow<String> = _toArticleDetail
@@ -35,9 +43,22 @@ class ContentViewModel(private val categoryId: String?):ViewModel() {
      this.lastId=lastId
      viewModelScope.launch {
          //在viewmodel里面请求到数据，
-         val r=DefaultNetworkRepository.contents(lastId,categoryId=categoryId)
-         //然后把数据放在这个流里面，然后fragment就可以通过监听这个流来获取数据
-         _data.emit(r.data!!)
+         try {//try catch是另一种错误 异常 如没网什么的
+             val r=DefaultNetworkRepository.contents(lastId,categoryId=categoryId)
+             if(r.isSucceeded){
+                 //成功
+                 //然后把数据放在这个流里面，然后fragment就可以通过监听这个流来获取数据
+                 _data.emit(r.data!!)
+             }else{
+                 //业务错误(应该停止刷新不能一直刷新，同时告诉用户出错了)
+                 //这里的失败指的是用户名或密码错误 或者创建用户参数没有填
+                 _response.value=r
+             }
+         } catch (e: Exception) {
+            _exception.value=e
+         }
+
+
      }
  }
     /**

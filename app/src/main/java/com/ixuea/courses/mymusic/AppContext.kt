@@ -19,4 +19,10 @@ class AppContext : Application(){
     private fun initMMKV() {
         val rootDir=MMKV.initialize(this)
     }
+
+    fun logout() {
+
+    }
+
+
 }
