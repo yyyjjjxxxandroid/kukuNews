@@ -2,6 +2,7 @@ package com.ixuea.courses.mymusic.repository
 
 import com.ixuea.courses.mymusic.component.api.DefaultNetworkService
 import com.ixuea.courses.mymusic.component.content.Content
+import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
 import retrofit2.http.Query
 
@@ -15,6 +16,9 @@ object DefaultNetworkRepository {
      private val service:DefaultNetworkService by lazy {
          DefaultNetworkService.create()
      }
+    suspend fun contentDetail(id:String): DetailResponse<Content> {
+        return service.contentDetail(id)
+    }
  suspend fun contents(
    last:String?=null,
    categoryId:String?=null,

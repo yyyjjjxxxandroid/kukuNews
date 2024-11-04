@@ -31,10 +31,10 @@ class ContentViewModel(private val categoryId: String?): BaseViewModel() {
 
     //预览图片
     data class PreviewMediaPageData(val view: RecyclerView, val medias: List<String>, val position: Int)
-
+    //跳转到文章详情
     private val _toArticleDetail = MutableSharedFlow<String>()
     val toArticleDetail: SharedFlow<String> = _toArticleDetail
-
+    //跳转到视频详情
     private val _toCourseDetail = MutableSharedFlow<String>()
     val toCourseDetail: SharedFlow<String> = _toCourseDetail
 
@@ -74,7 +74,7 @@ class ContentViewModel(private val categoryId: String?): BaseViewModel() {
      * 列表item点击
      */
     fun itemClick(data: Content) {
-        viewModelScope.launch {
+        viewModelScope.launch{
             if (StringUtils.isNotBlank(data.uri)) {
                 _toCourseDetail.emit(data.id!!)
             } else {

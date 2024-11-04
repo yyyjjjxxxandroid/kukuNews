@@ -25,7 +25,9 @@ class ContentAdapter(val viewModel: ContentViewModel) : BaseQuickAdapter<Content
     * */
     override fun onBindViewHolder(holder: ViewHolder, position: Int, data: Content?) {
     holder.bindData(data!!)
-
+    holder.itemView.setOnClickListener {
+            viewModel.itemClick(data)
+        }
     }
 
     /*

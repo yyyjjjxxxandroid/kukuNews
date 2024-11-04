@@ -130,6 +130,8 @@ dependencies {
     implementation 'com.github.angcyo.DslTablayout:TabLayout:3.5.3'
     implementation 'com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3'
 
+    //https://developer.android.google.cn/jetpack/androidx/releases/lifecycle?hl=zh-cn  这个网址有需要那个下哪个就行
+    implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.lifecycle.lifecycle.livedata.ktx4
     implementation libs.androidx.lifecycle.viewmodel.android
     //region 请求网络相关

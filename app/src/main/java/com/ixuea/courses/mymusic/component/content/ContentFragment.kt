@@ -1,13 +1,17 @@
 package com.ixuea.courses.mymusic.component.content
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.collect.Lists
+import com.ixuea.courses.mymusic.component.articledetail.ArticleDetailActivity
 import com.ixuea.courses.mymusic.databinding.FragmentContentBinding
 import com.ixuea.courses.mymusic.fragment.BaseViewModelFragment
 import com.ixuea.courses.mymusic.util.Constant
@@ -55,6 +59,16 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
                   }
                 processRefreshAndLoadMoreStatus(true,it.data?.isEmpty()?:true)
       //将数据设置进去，它只会更新数据发生变化的部分视图，避免了像notifyDataSetChanged那样重新创建和绑定所有视图。adapter.submitList(it.data)
+            }
+        }
+        lifecycleScope.launch {
+            //用于确保在Lifecycle对象处于特定状态（这里是STARTED状态）时，协程块内的代码能够被重复执行。其实加了没意义就是试试
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.toArticleDetail.collect{ id->
+                    val intent= Intent(requireContext(), ArticleDetailActivity::class.java)
+                    intent.putExtra(Constant.ID,id)
+                    startActivity(intent)
+                }
             }
         }
         lifecycleScope.launch {
