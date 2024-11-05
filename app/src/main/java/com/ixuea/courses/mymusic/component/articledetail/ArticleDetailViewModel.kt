@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.ixuea.courses.mymusic.R
+import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.category.Category
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.entity.response.Meta
@@ -26,12 +27,27 @@ class ArticleDetailViewModel(private val id: String): BaseViewModel() {
     private val _data= MutableSharedFlow<Content>()
     //这个外部使用变量，为什么定义两个？为了避免在fragment中去更改他的数据
     val data: Flow<Content> =_data
-
+    private val _comments= MutableSharedFlow<Meta<Comment>>()
+     val comments:Flow<Meta<Comment>> = _comments
  fun loadData(){
      viewModelScope.launch(coroutineExceptionHandler) {
          DefaultNetworkRepository.contentDetail(id).onSuccess(viewModel){
                  _data.emit(it!!)
              }
      }
+     loadMoreComments()
  }
+
+    private fun loadMoreComments() {
+        viewModelScope.launch(coroutineExceptionHandler) {
+            DefaultNetworkRepository.comments(articleId = id).onSuccess(viewModel){
+                _comments.emit(it)
+            }
+        }
+    }
+
+    fun loadReplyComment(data: Comment) {
+
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.ixuea.courses.mymusic.component.api
 
+import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
@@ -23,6 +24,16 @@ interface DefaultNetworkService {
      //内容详情
      @GET("v1/contents/{id}")
      suspend fun contentDetail(@Path("id") id: String): DetailResponse<Content>
+    // 评论列表
+    @GET("v1/comments")
+    //挂起函数suspend 不可以直接调用 需要放到协程里面直接调用
+    //这里面不推荐使用默认值  推荐写到repository去
+    suspend fun comments(
+        @Query(value = "article_id") articleId: String?,
+        @Query(value = "parent_id") parentId: String?,
+        @Query(value = "page") page: Int,
+        @Query(value = "size") size: Int,
+    ): ListResponse<Comment>
     companion object {
             fun create(): DefaultNetworkService {
                 ///创建 Retrofit
