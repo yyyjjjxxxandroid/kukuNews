@@ -29,9 +29,12 @@ class ArticleDetailViewModel(private val id: String): BaseViewModel() {
     val data: Flow<Content> =_data
     private val _comments= MutableSharedFlow<Meta<Comment>>()
      val comments:Flow<Meta<Comment>> = _comments
+    lateinit var content: Content
  fun loadData(){
      viewModelScope.launch(coroutineExceptionHandler) {
          DefaultNetworkRepository.contentDetail(id).onSuccess(viewModel){
+             //这个字段是为了让外面直接获取到id
+             content=it!!
                  _data.emit(it!!)
              }
      }

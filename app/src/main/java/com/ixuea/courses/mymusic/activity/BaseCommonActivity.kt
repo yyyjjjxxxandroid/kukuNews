@@ -2,6 +2,7 @@ package com.ixuea.courses.mymusic.activity
 
 import android.content.Intent
 import android.os.Build
+import com.ixuea.courses.mymusic.util.Constant
 
 /*
 *不同项目可以复用的逻辑，例如：启动界面等
@@ -38,20 +39,20 @@ open class BaseCommonActivity : BaseActivity() {
      * @param clazz
      * @param id
      */
-//    protected fun startActivityExtraId(
-//        clazz: Class<*>,
-//        id: String
-//    ) {
-//        //创建Intent
-//        val intent = Intent(this, clazz).apply {
-//            //传递数据
-//            //不为空才传递
-//            putExtra(Constant.ID, id)
-//        }
-//
-//        //启动界面
-//        startActivity(intent)
-//    }
+    protected fun startActivityExtraId(
+        clazz: Class<*>,
+        id: String
+    ) {
+        //创建Intent
+        val intent = Intent(this, clazz).apply {
+            //传递数据
+            //不为空才传递
+            putExtra(Constant.ID, id)
+        }
+
+        //启动界面
+        startActivity(intent)
+    }
 
     /**
      * 获取字符串
