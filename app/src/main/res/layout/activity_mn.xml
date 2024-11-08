@@ -5,12 +5,14 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:openDrawer="start"
     tools:context=".component.main.MainActivity">
-    <!--include 要加id是要我可以在binding中找到-->
-<include
-    android:id="@+id/content"
-    layout="@layout/activity_main_content" />
+
+    <include
+        android:id="@+id/content"
+        layout="@layout/activity_main_content" />
+
     <!--这部分是侧滑内容
    layout_gravity:是控制侧滑方向的
    start:表示从左侧滑出
@@ -19,18 +21,16 @@
    因为这个start其实是手机的布局方法
    有些语言的手机是从右到左布局
    那么如果还是start
-   那就是从右侧滑出
-   android:clickable="true"防止点击侧滑内容空白界面穿透到主界面-->
+   那就是从右侧滑出-->
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="?attr/colorSlideBackground"
         android:clickable="true"
         android:fitsSystemWindows="true"
-        android:background="?attr/colorSlideBackground"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+        <!--用户信息-->
         <RelativeLayout
             android:id="@+id/user_container"
             android:layout_width="match_parent"

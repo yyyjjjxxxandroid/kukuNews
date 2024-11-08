@@ -1,5 +1,6 @@
 package com.ixuea.courses.mymusic.component.main
 
+import androidx.core.view.GravityCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.angcyo.tablayout.ViewPagerDelegate
 import com.angcyo.tablayout.delegate2.ViewPager2Delegate
@@ -10,6 +11,7 @@ import com.ixuea.courses.mymusic.databinding.ActivityMainBinding
 import com.ixuea.courses.mymusic.databinding.ItemTabBinding
 
 import com.ixuea.courses.mymusic.util.Constant
+import com.ixuea.superui.SuperProcessUtil
 import com.ixuea.superui.util.SuperDarkUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 
@@ -40,7 +42,7 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
     }
     override fun initDatum() {
         super.initDatum()
-        binding.apply {
+        binding.content.apply {
             //滚动控件
             //表示缓存几个界面 一上来就缓存免得体验感不好
             pager.offscreenPageLimit= indicatorTitles.size
@@ -53,13 +55,13 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
             ItemTabBinding.inflate(layoutInflater).apply {
                 content.setText(indicatorTitles[i])
                 icon.setImageResource(indicatorIcons[i])
-                binding.indicator.addView(root)
+                binding.content.indicator.addView(root)
             }
         }
         //第二个依赖
         //“delegate” 有 “代表”“委托”“授权” 等。例如：He was delegated to attend the meeting.（他被委派去参加会议。）
         //“install” “安装”“设置”。例如：You need to install the software before using it.（在使用这个软件之前你需要安装它。）
-        ViewPager2Delegate.install(binding.pager,binding.indicator,false )
+        ViewPager2Delegate.install(binding.content.pager,binding.content.indicator,false )
         val action=intent.action
         if(action== Constant.ACTION_LOGIN){
             startActivity(LoginHomeActivity::class.java)
@@ -68,7 +70,7 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
 
     override fun initListeners() {
         super.initListeners()
-        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.content.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -81,5 +83,15 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
             }
 
         })
+        //关闭应用点击
+        binding.closeApp.setOnClickListener{
+            SuperProcessUtil.killApp()
+        }
+    }
+   fun openDrawer(){
+       binding.drawer.openDrawer(GravityCompat.START)
+    }
+    fun closeDrawer(){
+        binding.drawer.closeDrawer(GravityCompat.START)
     }
 }

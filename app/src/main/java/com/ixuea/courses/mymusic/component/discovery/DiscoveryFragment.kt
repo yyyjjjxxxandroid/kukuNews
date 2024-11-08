@@ -2,6 +2,7 @@ package com.ixuea.courses.mymusic.component.discovery
 
 import android.os.Bundle
 import com.ixuea.courses.mymusic.adapter.TabLayoutViewPager2Mediator
+import com.ixuea.courses.mymusic.component.main.MainActivity
 import com.ixuea.courses.mymusic.databinding.FragmentDiscoveryBinding
 
 import com.ixuea.courses.mymusic.fragment.BaseViewModelFragment
@@ -19,6 +20,19 @@ class DiscoveryFragment :BaseViewModelFragment<FragmentDiscoveryBinding>(){
         }
 
     }
+
+    override fun initListeners() {
+        super.initListeners()
+        //其实在发现页这个fragment里面是操控不了这个侧滑的，侧滑在mainActivity里面
+        binding.menu.setOnClickListener {
+            //通过将requireActivity()返回的 Activity 对象转换为MainActivity类型，
+            // Fragment 就能够明确地访问这些在MainActivity中定义的特有功能。
+            (hostActivity as MainActivity).openDrawer()
+
+
+        }
+    }
+
     companion object{
         fun newInstance(): DiscoveryFragment {
             val args = Bundle()
