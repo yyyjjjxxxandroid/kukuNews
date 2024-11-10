@@ -37,9 +37,9 @@ object PreferenceUtil {
      *
      * @return
      */
-//    fun isLogin(): Boolean {
-//        return Constant.ANONYMOUS != getUserId()
-//    }
+    fun isLogin(): Boolean {
+        return Constant.ANONYMOUS != getUserId()
+    }
 
     /**
      * 设置用户Id
@@ -55,9 +55,9 @@ object PreferenceUtil {
      *
      * @return
      */
-//    fun getUserId(): String {
-//        return p.decodeString(USER_ID, Constant.ANONYMOUS)!!
-//    }
+    fun getUserId(): String {
+        return p.decodeString(USER_ID, Constant.ANONYMOUS)!!
+    }
 
     /**
      * 设置用户Token
@@ -174,11 +174,15 @@ object PreferenceUtil {
         p.edit().putBoolean(key, value).apply()
     }
 
+
+
     //endregion
 
     /**
      * 是否显示引导界面key
      */
+
+
     private const val SHOW_GUIDE = "SHOW_GUIDE"
     private const val USER_ID = "user"
     private const val TOKEN = "token"

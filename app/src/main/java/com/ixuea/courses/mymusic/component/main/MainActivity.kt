@@ -6,11 +6,13 @@ import com.angcyo.tablayout.ViewPagerDelegate
 import com.angcyo.tablayout.delegate2.ViewPager2Delegate
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
+import com.ixuea.courses.mymusic.component.UserDetailActivity.UserDetailActivity
 import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
 import com.ixuea.courses.mymusic.databinding.ActivityMainBinding
 import com.ixuea.courses.mymusic.databinding.ItemTabBinding
 
 import com.ixuea.courses.mymusic.util.Constant
+import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.superui.SuperProcessUtil
 import com.ixuea.superui.util.SuperDarkUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
@@ -86,6 +88,14 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
         //关闭应用点击
         binding.closeApp.setOnClickListener{
             SuperProcessUtil.killApp()
+        }
+        binding.userContainer.setOnClickListener{
+            closeDrawer()
+            if (PreferenceUtil.isLogin()){
+                startActivityExtraId(UserDetailActivity::class.java,PreferenceUtil.getUserId())
+            }else{
+                startActivity(LoginHomeActivity::class.java)
+            }
         }
     }
    fun openDrawer(){
