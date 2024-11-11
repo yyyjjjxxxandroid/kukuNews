@@ -33,6 +33,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:screenOrientation="portrait"
+            android:label="@string/login"
+            android:name=".component.login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".component.UserDetailActivity.UserDetailActivity"
             android:exported="false" />
         <activity
@@ -40,9 +45,9 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:label=""
             android:name=".component.login.LoginHomeActivity"
             android:exported="false"
+            android:label=""
             android:screenOrientation="portrait" /> <!-- ctrl+/ -->
         <activity
             android:name=".component.splash.SplashActivity"

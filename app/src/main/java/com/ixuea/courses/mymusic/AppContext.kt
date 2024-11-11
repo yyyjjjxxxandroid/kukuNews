@@ -24,5 +24,9 @@ class AppContext : Application(){
 
     }
 
+    fun onLogin() {
+
+    }
+
 
 }

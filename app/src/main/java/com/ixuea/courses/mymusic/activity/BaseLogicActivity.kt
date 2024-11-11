@@ -8,7 +8,9 @@ import com.ixuea.courses.mymusic.entity.response.BaseResponse
 import com.ixuea.courses.mymusic.model.BaseViewModel
 import com.ixuea.superui.extension.longToast
 import com.ixuea.superui.extension.shortToast
+import com.ixuea.superui.util.SuperDarkUtil
 import com.ixuea.superui.util.SuperNetworkUtil
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import org.apache.commons.lang3.StringUtils
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -28,6 +30,16 @@ open class BaseLogicActivity:BaseCommonActivity() {
     //}
     //在这个例子中，name 属性有一个访问器。当读取 name 属性时，
 // 访问器会将属性值转换为大写后返回。
+    override fun initViews() {
+        super.initViews()
+        if (SuperDarkUtil.isDark(this)) {
+            //状态栏文字白色
+            QMUIStatusBarHelper.setStatusBarDarkMode(this)
+        }else{
+            //状态栏文字黑色
+            QMUIStatusBarHelper.setStatusBarLightMode(this)
+        }
+    }
 
     /**
      * 初始化通用ViewModel逻辑

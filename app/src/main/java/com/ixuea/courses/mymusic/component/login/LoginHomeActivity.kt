@@ -26,4 +26,9 @@ class LoginHomeActivity : BaseTitleActivity<ActivityLoginHomeBinding>() {
         binding.userAgreement.text=content
     }
 
+    override fun initListeners() {
+        super.initListeners()
+        binding.usernameLogin.setOnClickListener {startActivity(LoginActivity::class.java)}
+    }
+
 }

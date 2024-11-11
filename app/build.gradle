@@ -79,6 +79,9 @@ android {
 }
 
 dependencies {
+    //添加所有libs目录里面的jar，aar
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
     //region 下拉刷新，上来加载更多
     //下拉刷新框架
     //https://github.com/scwang90/SmartRefreshLayout

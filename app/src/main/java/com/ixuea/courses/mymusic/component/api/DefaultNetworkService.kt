@@ -2,9 +2,13 @@ package com.ixuea.courses.mymusic.component.api
 
 import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.content.Content
+import com.ixuea.courses.mymusic.component.login.Session
+import com.ixuea.courses.mymusic.component.user.User
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 /*
@@ -34,6 +38,9 @@ interface DefaultNetworkService {
         @Query(value = "page") page: Int,
         @Query(value = "size") size: Int,
     ): ListResponse<Comment>
+  //登入
+    @POST("v1/sessions")
+    suspend fun login(@Body data:User):DetailResponse<Session>
     companion object {
             fun create(): DefaultNetworkService {
                 ///创建 Retrofit
