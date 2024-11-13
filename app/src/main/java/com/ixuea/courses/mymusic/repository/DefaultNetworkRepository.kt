@@ -23,6 +23,9 @@ object DefaultNetworkRepository {
     suspend fun contentDetail(id: String): DetailResponse<Content> {
         return service.contentDetail(id)
     }
+    suspend fun userDetail(id: String): DetailResponse<User> {
+        return service.userDetail(id)
+    }
 
     suspend fun contents(
         last: String? = null,

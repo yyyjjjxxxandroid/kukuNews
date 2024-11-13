@@ -1,23 +1,33 @@
 package com.ixuea.courses.mymusic.component.main
 
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.angcyo.tablayout.ViewPagerDelegate
 import com.angcyo.tablayout.delegate2.ViewPager2Delegate
+import com.ixuea.courses.mymusic.AppContext
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
 import com.ixuea.courses.mymusic.component.UserDetailActivity.UserDetailActivity
 import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
+import com.ixuea.courses.mymusic.component.user.User
 import com.ixuea.courses.mymusic.databinding.ActivityMainBinding
 import com.ixuea.courses.mymusic.databinding.ItemTabBinding
 
 import com.ixuea.courses.mymusic.util.Constant
+import com.ixuea.courses.mymusic.util.ImageUtil
 import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.superui.SuperProcessUtil
+import com.ixuea.superui.dialog.SuperDialog
+import com.ixuea.superui.extension.hide
+import com.ixuea.superui.extension.show
 import com.ixuea.superui.util.SuperDarkUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
+    private lateinit var viewModel : MainViewModel
     companion object{
         private val indicatorTitles=
             intArrayOf(R.string.discovery, R.string.video, R.string.category, R.string.me)
@@ -44,6 +54,13 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
     }
     override fun initDatum() {
         super.initDatum()
+       viewModel=ViewModelProvider(this)[MainViewModel::class.java]
+        initViewModel(viewModel)
+       lifecycleScope.launch {
+           viewModel.userData.collect{data->
+               showUserData(data)
+           }
+       }
         binding.content.apply {
             //滚动控件
             //表示缓存几个界面 一上来就缓存免得体验感不好
@@ -97,11 +114,49 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
                 startActivity(LoginHomeActivity::class.java)
             }
         }
+        //退出登录点击
+        binding.primary.setOnClickListener{
+            SuperDialog.newInstance(supportFragmentManager)
+                .setTitleRes(R.string.confirm_logout)
+                .setOnClickListener(){
+                    AppContext.instance.logout()
+                    showNotLogin()
+                    closeDrawer()
+                }.show()
+        }
     }
    fun openDrawer(){
        binding.drawer.openDrawer(GravityCompat.START)
     }
     fun closeDrawer(){
         binding.drawer.closeDrawer(GravityCompat.START)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showUserInfo()
+    }
+
+    private fun showUserInfo() {
+        if (PreferenceUtil.isLogin()){
+            //已经登入了
+            //获取用户信息
+            viewModel.loadUserData()
+            binding.primary.show()
+        }else{
+            showNotLogin()
+        }
+    }
+    private fun  showUserData(data: User){
+        //显示头像
+        ImageUtil.showAvatar(binding.avatar,data.icon)
+        //昵称
+        binding.nickname.text = data.nickname
+    }
+    //显示未登录
+    private fun showNotLogin(){
+     binding.nickname.setText(R.string.login_or_register)
+          binding.avatar.setImageResource(R.drawable.default_avatar)
+        binding.primary.hide()
     }
 }

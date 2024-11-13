@@ -16,8 +16,7 @@ import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
 import com.ixuea.courses.mymusic.component.UserDetailActivity.UserDetailActivity
 import com.ixuea.courses.mymusic.component.content.Content
-import com.ixuea.courses.mymusic.component.content.ContentViewModel
-import com.ixuea.courses.mymusic.component.content.ContentViewModelFactory
+
 import com.ixuea.courses.mymusic.databinding.ActivityArticleDetailBinding
 import com.ixuea.courses.mymusic.util.Constant
 import com.ixuea.courses.mymusic.util.ImageUtil

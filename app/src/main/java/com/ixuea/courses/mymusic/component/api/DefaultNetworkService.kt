@@ -28,6 +28,9 @@ interface DefaultNetworkService {
      //内容详情
      @GET("v1/contents/{id}")
      suspend fun contentDetail(@Path("id") id: String): DetailResponse<Content>
+    //用户详情
+    @GET("v1/users/{id}")
+    suspend fun userDetail(@Path("id") id: String): DetailResponse<User>
     // 评论列表
     @GET("v1/comments")
     //挂起函数suspend 不可以直接调用 需要放到协程里面直接调用

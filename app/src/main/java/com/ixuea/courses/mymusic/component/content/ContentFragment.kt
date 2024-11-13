@@ -38,7 +38,7 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
         super.initDatum()
         //这里传的是tab中fragment的id
         val viewModelFactory=ContentViewModelFactory(requireArguments().getString(Constant.ID))
-        viewModel=ViewModelProvider(this,viewModelFactory).get(ContentViewModel::class.java)
+        viewModel= ViewModelProvider(this,viewModelFactory)[ContentViewModel::class.java]
         //用来监听页面出错
         initViewModel(viewModel)
         //适配器
