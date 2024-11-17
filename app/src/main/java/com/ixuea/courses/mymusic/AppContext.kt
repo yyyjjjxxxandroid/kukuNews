@@ -1,6 +1,8 @@
 package com.ixuea.courses.mymusic
 
 import android.app.Application
+import com.drake.channel.sendEvent
+import com.ixuea.courses.mymusic.component.login.LoginStatusChangedEvent
 import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.tencent.mmkv.MMKV
 
@@ -31,11 +33,16 @@ class AppContext : Application() {
     private fun logoutSilence() {
         //清楚登入相关信息
         PreferenceUtil.logout()
+        loginStatusChanged()
     }
+
+
 
     fun onLogin() {
-
+        loginStatusChanged()
     }
-
+    private fun loginStatusChanged() {
+       sendEvent(LoginStatusChangedEvent())
+    }
 
 }

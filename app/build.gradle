@@ -79,6 +79,10 @@ android {
 }
 
 dependencies {
+    //基于协程跨界面通讯
+    //https://github.com/liangjingkanji/Channel
+    implementation 'com.github.liangjingkanji:Channel:1.1.5'
+
     //添加所有libs目录里面的jar，aar
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 

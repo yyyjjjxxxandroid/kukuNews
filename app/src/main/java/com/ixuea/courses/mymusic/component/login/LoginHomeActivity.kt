@@ -1,6 +1,7 @@
 package com.ixuea.courses.mymusic.component.login
 import android.text.Html
 import androidx.core.content.ContextCompat
+import com.drake.channel.receiveEvent
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseTitleActivity
 
@@ -18,6 +19,9 @@ class LoginHomeActivity : BaseTitleActivity<ActivityLoginHomeBinding>() {
         )
         val content= Html.fromHtml(getString(R.string.user_agreement))
         binding.userAgreement.text=content
+        receiveEvent<LoginStatusChangedEvent> {
+            finish()
+        }
     }
 
     override fun initListeners() {
