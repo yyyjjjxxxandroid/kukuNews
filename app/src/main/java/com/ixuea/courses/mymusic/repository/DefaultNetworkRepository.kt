@@ -5,6 +5,7 @@ import com.ixuea.courses.mymusic.component.api.DefaultNetworkService
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.component.login.Session
 import com.ixuea.courses.mymusic.component.user.User
+import com.ixuea.courses.mymusic.entity.BaseId
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
 import retrofit2.http.Query
@@ -39,6 +40,9 @@ object DefaultNetworkRepository {
   suspend fun login(data: User):DetailResponse<Session>{
       return service.login(data)
   }
+    suspend fun register(data: User):DetailResponse<BaseId>{
+        return service.register(data)
+    }
     suspend fun comments(
         articleId: String? = null,
         parentId: String? = null,

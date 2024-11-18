@@ -4,6 +4,7 @@ import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.component.login.Session
 import com.ixuea.courses.mymusic.component.user.User
+import com.ixuea.courses.mymusic.entity.BaseId
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
 import retrofit2.http.Body
@@ -31,6 +32,7 @@ interface DefaultNetworkService {
     //用户详情
     @GET("v1/users/{id}")
     suspend fun userDetail(@Path("id") id: String): DetailResponse<User>
+
     // 评论列表
     @GET("v1/comments")
     //挂起函数suspend 不可以直接调用 需要放到协程里面直接调用
@@ -44,6 +46,9 @@ interface DefaultNetworkService {
   //登入
     @POST("v1/sessions")
     suspend fun login(@Body data:User):DetailResponse<Session>
+//注册
+    @POST("v1/users")
+    suspend fun register(@Body data: User): DetailResponse<BaseId>
     companion object {
             fun create(): DefaultNetworkService {
                 ///创建 Retrofit

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ixuea.courses.mymusic.AppContext
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseTitleActivity
+import com.ixuea.courses.mymusic.component.register.RegisterActivity
 import com.ixuea.courses.mymusic.config.Config
 import com.ixuea.courses.mymusic.databinding.ActivityLoginBinding
 
@@ -37,6 +38,8 @@ class LoginActivity : BaseTitleActivity<ActivityLoginBinding>() {
         binding.primary.setOnClickListener {
             viewModel.login(binding.username.text.toString().trim(),binding.password.text.toString().trim())
         }
-//        binding.register.setOnClickListener {v->startActivity(RegisterActivity::class.java)}
+        binding.register.setOnClickListener {
+            startActivity(RegisterActivity::class.java)
+        }
     }
 }
