@@ -11,7 +11,7 @@ import com.ixuea.superui.util.SuperTextUtil
 /**
 * 主界面
 * */
-class LoginHomeActivity : BaseTitleActivity<ActivityLoginHomeBinding>() {
+class LoginHomeActivity : BaseLoginActivity<ActivityLoginHomeBinding>() {
     override fun initDatum() {
         super.initDatum()
         SuperTextUtil.setLinkColor(binding.userAgreement,

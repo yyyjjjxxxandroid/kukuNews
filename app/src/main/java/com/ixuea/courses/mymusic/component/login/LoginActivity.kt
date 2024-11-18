@@ -13,8 +13,8 @@ import com.ixuea.courses.mymusic.component.register.RegisterActivity
 import com.ixuea.courses.mymusic.config.Config
 import com.ixuea.courses.mymusic.databinding.ActivityLoginBinding
 
-class LoginActivity : BaseTitleActivity<ActivityLoginBinding>() {
-    private lateinit var viewModel: LoginViewModel
+class LoginActivity : BaseLoginActivity<ActivityLoginBinding>() {
+
     override fun initDatum() {
         super.initDatum()
         if(Config.DEBUG){
@@ -22,21 +22,13 @@ class LoginActivity : BaseTitleActivity<ActivityLoginBinding>() {
             binding.password.setText("ixueaedu")
         }
 
-        viewModel= ViewModelProvider(this)[LoginViewModel::class.java]
-        initViewModel(viewModel)
-        viewModel.success.observe(this){
-            //成功了
 
-            //执行登入后操作
-            AppContext.instance.onLogin()
-            finish()
-        }
     }
 
     override fun initListeners() {
         super.initListeners()
         binding.primary.setOnClickListener {
-            viewModel.login(binding.username.text.toString().trim(),binding.password.text.toString().trim())
+            loginViewModel.login(binding.username.text.toString().trim(),binding.password.text.toString().trim())
         }
         binding.register.setOnClickListener {
             startActivity(RegisterActivity::class.java)
