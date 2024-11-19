@@ -17,6 +17,7 @@ import com.ixuea.courses.mymusic.model.BaseViewModel
 import com.ixuea.courses.mymusic.repository.DefaultNetworkRepository
 import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.k.util.StringUtil
+import com.ixuea.superui.util.SuperRegularUtil
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -33,6 +34,11 @@ class LoginViewModel(): BaseViewModel() {
               //返回
               return
           }
+        //如果用户名 不是手机号也不是邮箱 就是格式错误
+        if (!(SuperRegularUtil.isPhone(username) || SuperRegularUtil.isEmail(username))){
+            _tip.value=R.string.error_username_format
+            return
+        }
         if (TextUtils.isEmpty(password)){
             _tip.value=R.string.enter_password
             return
@@ -42,7 +48,7 @@ class LoginViewModel(): BaseViewModel() {
             return
         }
         val user= User()
-       if (true){
+       if (SuperRegularUtil.isPhone(username)){
            user.phone=username
        }else{
            user.email=username

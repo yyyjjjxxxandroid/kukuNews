@@ -4,6 +4,7 @@ import androidx.core.content.ContextCompat
 import com.drake.channel.receiveEvent
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseTitleActivity
+import com.ixuea.courses.mymusic.component.input.InputIdentityActivity
 
 import com.ixuea.courses.mymusic.databinding.ActivityLoginHomeBinding
 import com.ixuea.superui.util.SuperTextUtil
@@ -27,7 +28,9 @@ class LoginHomeActivity : BaseLoginActivity<ActivityLoginHomeBinding>() {
     override fun initListeners() {
         super.initListeners()
         binding.usernameLogin.setOnClickListener {startActivity(LoginActivity::class.java)}
-
+        binding.phoneLogin.setOnClickListener {
+            InputIdentityActivity.start(hostActivity)
+        }
     }
 
 }
