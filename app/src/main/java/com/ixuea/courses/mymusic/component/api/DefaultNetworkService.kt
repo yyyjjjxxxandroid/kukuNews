@@ -2,8 +2,10 @@ package com.ixuea.courses.mymusic.component.api
 
 import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.content.Content
+import com.ixuea.courses.mymusic.component.input.CodeRequest
 import com.ixuea.courses.mymusic.component.login.Session
 import com.ixuea.courses.mymusic.component.user.User
+import com.ixuea.courses.mymusic.entity.Base
 import com.ixuea.courses.mymusic.entity.BaseId
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
@@ -49,6 +51,33 @@ interface DefaultNetworkService {
 //注册
     @POST("v1/users")
     suspend fun register(@Body data: User): DetailResponse<BaseId>
+    //region 验证码
+    /**
+     * 发送验证码
+     *
+     * @param data
+     * @return
+     */
+    @POST("v1/codes")
+    suspend fun sendCode(
+        @Query(value = "style") style: Int,
+        @Body data: CodeRequest
+    ): DetailResponse<Base>
+
+    /**
+     * 校验验证码
+     *
+     * @param data
+     * @return
+     */
+    @POST("v1/codes/check")
+    suspend fun checkCode(
+        @Body data: CodeRequest
+    ): DetailResponse<Base>
+    //endregion
+
+
+
     companion object {
             fun create(): DefaultNetworkService {
                 ///创建 Retrofit

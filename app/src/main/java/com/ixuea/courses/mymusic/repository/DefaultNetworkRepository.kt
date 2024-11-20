@@ -3,8 +3,10 @@ package com.ixuea.courses.mymusic.repository
 import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.api.DefaultNetworkService
 import com.ixuea.courses.mymusic.component.content.Content
+import com.ixuea.courses.mymusic.component.input.CodeRequest
 import com.ixuea.courses.mymusic.component.login.Session
 import com.ixuea.courses.mymusic.component.user.User
+import com.ixuea.courses.mymusic.entity.Base
 import com.ixuea.courses.mymusic.entity.BaseId
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
@@ -50,5 +52,9 @@ object DefaultNetworkRepository {
         size: Int = 10,
     ): ListResponse<Comment> {
         return service.comments(articleId, parentId, page, size)
+    }
+
+   suspend fun sendCode(style: Int, data: CodeRequest): DetailResponse<Base> {
+             return service.sendCode(style, data)
     }
 }

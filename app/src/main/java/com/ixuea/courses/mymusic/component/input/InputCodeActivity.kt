@@ -7,13 +7,55 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.ixuea.courses.mymusic.R
+import com.ixuea.courses.mymusic.component.login.BaseLoginActivity
+import com.ixuea.courses.mymusic.databinding.ActivityInputCodeBinding
 import com.ixuea.courses.mymusic.util.Constant
+import com.king.view.splitedittext.SplitEditText
+import kotlinx.coroutines.launch
 
-class InputCodeActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_input_code)
+class InputCodeActivity : BaseLoginActivity<ActivityInputCodeBinding>() {
+  private lateinit var viewModel: InputCodeViewModel
+    override fun initDatum() {
+        super.initDatum()
+        val viewModelFactory=InputCodeViewModelFactory(intent.getParcelableExtra(Constant.DATA)!!)
+        viewModel= ViewModelProvider(this,viewModelFactory)[InputCodeViewModel::class.java]
+        initViewModel(viewModel)
+
+        lifecycleScope.launch {
+            viewModel.codeLogin.collect{
+                data->
+                      loginViewModel.login(data)
+            }
+        }
+            viewModel.codeSendTarget.observe(this){
+                binding.codeSendTarget.text=it
+            }
+            viewModel.sendText.observe(this) {
+                binding.send.text = it
+            }
+
+            viewModel.sendEnable.observe(this) {
+
+                binding.send.isEnabled = it
+            }
+        viewModel.loadData()
+
+    }
+
+    override fun initListeners() {
+        super.initListeners()
+        //设置验证码输入完成后的监听
+        binding.code.setOnTextInputListener(object :SplitEditText.OnSimpleTextInputListener(){
+            override fun onTextInputCompleted(text: String) {
+                viewModel.processNext(text)
+            }
+        })
+        binding.send.setOnClickListener {
+            viewModel.sendCode()
+        }
     }
     //定义这样一个方法的好处就是其他开发人员要跳转这样一个界面，没有写这个方法的话，只能查看你的代码或者注释，写上注释告诉别人要传什么值，更好维护！
     companion object {

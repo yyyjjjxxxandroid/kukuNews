@@ -113,7 +113,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="@string/buy_vip"
+                                android:text="手机验证码在chucker查看"
                                 android:textColor="@color/black183"
                                 android:textSize="@dimen/text_large" />
 
@@ -132,7 +132,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/vip_hint"
+                            android:text="chucker中的RESPONSE可查看"
                             android:textColor="@color/vip_border"
                             android:textSize="@dimen/text_small" />
 
@@ -145,7 +145,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/vip_hint_price"
+                            android:text="拉下状态栏在通知中既可查看，记得打开通知权限！！！！！！！！！"
                             android:textColor="@color/vip_border"
                             android:textSize="@dimen/text_small" />
                     </LinearLayout>

@@ -79,6 +79,10 @@ android {
 }
 
 dependencies {
+    //类似滴滴出行验证码输入框控件
+    //https://github.com/jenly1314/SplitEditText
+    implementation 'com.github.jenly1314:splitedittext:1.1.0'
+
     //基于协程跨界面通讯
     //https://github.com/liangjingkanji/Channel
     implementation 'com.github.liangjingkanji:Channel:1.1.5'
@@ -141,6 +145,7 @@ dependencies {
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.lifecycle.lifecycle.livedata.ktx4
     implementation libs.androidx.lifecycle.viewmodel.android
+
     //region 请求网络相关
     //提示：region这种语法是最新的，推荐使用这种，也更容易阅读，不建议在同一个文件同时使用
     //因为可能会显示出错

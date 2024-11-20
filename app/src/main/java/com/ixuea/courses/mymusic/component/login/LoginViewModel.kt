@@ -10,6 +10,7 @@ import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.comment.Comment
 import com.ixuea.courses.mymusic.component.category.Category
 import com.ixuea.courses.mymusic.component.content.Content
+import com.ixuea.courses.mymusic.component.input.InputCodePageData
 import com.ixuea.courses.mymusic.component.user.User
 import com.ixuea.courses.mymusic.entity.response.Meta
 import com.ixuea.courses.mymusic.entity.response.onSuccess
@@ -56,7 +57,8 @@ class LoginViewModel(): BaseViewModel() {
         user.password=password
         login(user)
     }
-    private  fun login(data: User){
+    //用户名和密码，第三方登入
+     fun login(data: User){
         viewModelScope.launch(coroutineExceptionHandler) {
             DefaultNetworkRepository.login(data).onSuccess(viewModel) {
                    //保存用户id
@@ -68,6 +70,16 @@ class LoginViewModel(): BaseViewModel() {
             }
         }
     }
+    //验证码登入
+   fun login(data: InputCodePageData){
+        val user= User()
+        user.phone=data.phone
+        user.email=data.email
+        user.code=data.code
+        login(user)
+    }
+
+
 
     private val _success= MutableLiveData<String>()
     val success: LiveData<String> =_success
