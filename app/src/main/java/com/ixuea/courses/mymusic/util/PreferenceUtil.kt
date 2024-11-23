@@ -1,6 +1,8 @@
 package com.ixuea.courses.mymusic.util
 
+import com.ixuea.courses.mymusic.component.ad.Ad
 import com.tencent.mmkv.MMKV
+import org.apache.commons.lang3.StringUtils
 
 /*
 * 偏好工具类
@@ -110,25 +112,25 @@ object PreferenceUtil {
      *
      * @return
      */
-//    fun getSplashAd(): Ad? {
-//        val result = p.getString(SPLASH_AD, null)
-//        return if (StringUtils.isBlank(result)) {
-//            null
-//        } else JSONUtil.fromJSON(result!!, Ad::class.java)
-//    }
+    fun getSplashAd(): Ad? {
+        val result = p.getString(SPLASH_AD, null)
+        return if (StringUtils.isBlank(result)) {
+            null
+        } else JSONUtil.fromJSON(result!!, Ad::class.java)
+    }
 
     /**
      * 设置启动界面广告
      *
      * @param data 如果为空，就是删除本地广告
      */
-//    fun setSplashAd(data: Ad?) {
-//        if (null == data) {
-//            delete(SPLASH_AD)
-//        } else {
-//            putString(SPLASH_AD, JSONUtil.toJSON(data))
-//        }
-//    }
+    fun setSplashAd(data: Ad?) {
+        if (null == data) {
+            delete(SPLASH_AD)
+        } else {
+            putString(SPLASH_AD, JSONUtil.toJSON(data))
+        }
+    }
 
 //    fun getDeviceId(): String {
 //        var id = getString(KEY_DEVICE_ID)

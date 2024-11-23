@@ -1,6 +1,7 @@
 package com.ixuea.courses.mymusic.component.api
 
 import com.ixuea.courses.mymusic.comment.Comment
+import com.ixuea.courses.mymusic.component.ad.Ad
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.component.input.CodeRequest
 import com.ixuea.courses.mymusic.component.login.Session
@@ -75,6 +76,12 @@ interface DefaultNetworkService {
         @Body data: CodeRequest
     ): DetailResponse<Base>
     //endregion
+    //广告
+    @GET("v1/ads")
+    suspend fun ads(
+        @Query(value = "position") position: Int,
+        @Query(value = "style") style: Int?
+    ): ListResponse<Ad>
 
 
 

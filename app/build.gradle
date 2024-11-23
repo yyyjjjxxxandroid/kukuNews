@@ -79,6 +79,10 @@ android {
 }
 
 dependencies {
+    //通用IO相关工具类
+    //http://commons.apache.org/proper/commons-io/
+    implementation 'commons-io:commons-io:2.0'
+
     //类似滴滴出行验证码输入框控件
     //https://github.com/jenly1314/SplitEditText
     implementation 'com.github.jenly1314:splitedittext:1.1.0'

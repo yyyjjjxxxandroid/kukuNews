@@ -85,6 +85,7 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
         if(action== Constant.ACTION_LOGIN){
             startActivity(LoginHomeActivity::class.java)
         }
+        viewModel.loadSplashAd()
     }
 
     override fun initListeners() {

@@ -1,6 +1,7 @@
 package com.ixuea.courses.mymusic.repository
 
 import com.ixuea.courses.mymusic.comment.Comment
+import com.ixuea.courses.mymusic.component.ad.Ad
 import com.ixuea.courses.mymusic.component.api.DefaultNetworkService
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.component.input.CodeRequest
@@ -56,5 +57,9 @@ object DefaultNetworkRepository {
 
    suspend fun sendCode(style: Int, data: CodeRequest): DetailResponse<Base> {
              return service.sendCode(style, data)
+    }
+
+    suspend fun ads(position: Int=10,style:Int?=null): ListResponse<Ad> {
+        return service.ads(position,style)
     }
 }
