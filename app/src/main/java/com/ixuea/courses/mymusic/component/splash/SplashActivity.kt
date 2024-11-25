@@ -1,13 +1,16 @@
 package com.ixuea.courses.mymusic.component.splash
 
 import android.Manifest
+import android.content.Intent
 import android.os.Build
 import android.util.Log
 import com.ixuea.courses.mymusic.component.main.MainActivity
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
+import com.ixuea.courses.mymusic.component.ad.AdActivity
 import com.ixuea.courses.mymusic.component.guide.GuideActivity
 import com.ixuea.courses.mymusic.databinding.ActivitySplashBinding
 import com.ixuea.courses.mymusic.util.DefaultPreferenceUtil
+import com.ixuea.courses.mymusic.util.IntentUtil
 import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.superui.util.SuperDarkUtil
 import com.permissionx.guolindev.PermissionX
@@ -64,7 +67,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
 //                Manifest.permission.READ_PHONE_STATE,
-//                Manifest.permission.READ_MEDIA_AUDIO,
+////                Manifest.permission.READ_MEDIA_AUDIO,
 //                Manifest.permission.READ_MEDIA_IMAGES,
 //                Manifest.permission.READ_MEDIA_VIDEO,
             )
@@ -96,8 +99,17 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
            startActivityAfterFinishThis(GuideActivity::class.java)
            return
        }
-        //跳转到下一个界面
-      startActivityAfterFinishThis(MainActivity::class.java)
+        val intent= Intent()
+        if (PreferenceUtil.isLogin()){
+            intent.setClass(hostActivity,AdActivity::class.java)
+        }else{
+                 intent.setClass(hostActivity,MainActivity::class.java)
+        }
+        IntentUtil.cloneIntent(getIntent(),intent)
+        startActivity(intent)
+        finish()
+        //禁止启动动画 让用户感觉不到跳转到新界面
+        overridePendingTransition(0,0)
     }
 
 

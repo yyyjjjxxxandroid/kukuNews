@@ -7,7 +7,7 @@ import com.ixuea.courses.mymusic.entity.Common
 /**
  * 广告模型
  */
-class Ad : Common() {
+class Ad : Common{
     /**
      * 标题
      */
@@ -28,33 +28,34 @@ class Ad : Common() {
      */
     var style: Int = 0
 
-//    constructor(parcel: Parcel) : super(parcel) {
-//        title = parcel.readString()
-//        icon = parcel.readString()
-//        uri = parcel.readString()
-//        style = parcel.readInt()
-//    }
-//
-//    override fun writeToParcel(parcel: Parcel, flags: Int) {
-//        super.writeToParcel(parcel, flags)
-//        parcel.writeString(title)
-//        parcel.writeString(icon)
-//        parcel.writeString(uri)
-//        parcel.writeInt(style)
-//    }
-//
-//    override fun describeContents(): Int {
-//        return 0
-//    }
-//
-//    companion object CREATOR : Parcelable.Creator<Ad> {
-//        override fun createFromParcel(parcel: Parcel): Ad {
-//            return Ad(parcel)
-//        }
-//
-//        override fun newArray(size: Int): Array<Ad?> {
-//            return arrayOfNulls(size)
-//        }
-//    }
+    constructor(parcel: Parcel) : super(parcel) {
+        title = parcel.readString()
+        icon = parcel.readString()
+        uri = parcel.readString()
+        style = parcel.readInt()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        super.writeToParcel(parcel, flags)
+        parcel.writeString(title)
+        parcel.writeString(icon)
+        parcel.writeString(uri)
+        parcel.writeInt(style)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Ad> {
+        override fun createFromParcel(parcel: Parcel): Ad {
+            return Ad(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Ad?> {
+            return arrayOfNulls(size)
+        }
+    }
+
 
 }

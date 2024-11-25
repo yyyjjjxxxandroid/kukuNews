@@ -1,5 +1,6 @@
 package com.ixuea.courses.mymusic.component.main
 
+import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +11,7 @@ import com.ixuea.courses.mymusic.AppContext
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.activity.BaseViewModelActivity
 import com.ixuea.courses.mymusic.component.UserDetailActivity.UserDetailActivity
+import com.ixuea.courses.mymusic.component.ad.Ad
 import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
 import com.ixuea.courses.mymusic.component.user.User
 import com.ixuea.courses.mymusic.databinding.ActivityMainBinding
@@ -25,6 +27,7 @@ import com.ixuea.superui.extension.show
 import com.ixuea.superui.util.SuperDarkUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
     private lateinit var viewModel : MainViewModel
@@ -82,10 +85,18 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
         //“install” “安装”“设置”。例如：You need to install the software before using it.（在使用这个软件之前你需要安装它。）
         ViewPager2Delegate.install(binding.content.pager,binding.content.indicator,false )
         val action=intent.action
+
         if(action== Constant.ACTION_LOGIN){
             startActivity(LoginHomeActivity::class.java)
-        }
+        }else if (Constant.ACTION_AD==action){
+            //广告点击
+            processAdClick(intent.getParcelableExtra(Constant.AD)!!)
+         }
         viewModel.loadSplashAd()
+    }
+
+    private fun processAdClick(data: Ad) {
+        Log.d("guanggao", "processAdClick:监听广告点击事件后期用webView跳转 ")
     }
 
     override fun initListeners() {

@@ -34,7 +34,7 @@ class Meta<T> {
 
     var data: List<T>? = null
 
-//    constructor(data: List<T>?) {
-//        this.data = data
-//    }
+    constructor(data: List<T>?) {
+        this.data = data
+    }
 }

@@ -39,10 +39,10 @@ class MainViewModel : BaseViewModel() {
 
     fun loadSplashAd() {
         viewModelScope.launch(coroutineExceptionHandler) {
-            DefaultNetworkRepository.ads(style = 0).onSuccess(viewModel) {
+            DefaultNetworkRepository.ads().onSuccess(viewModel) {
                 // 处理广告数据
                 if (CollectionUtils.isNotEmpty(it.data)) {
-                    downloadAd(it.data!!.first())
+                    downloadAd(it.data!!.last())
                 } else {
                     //删除本地广告数据
                     deleteSplashAd()
@@ -68,8 +68,9 @@ class MainViewModel : BaseViewModel() {
         //判断文件是否存在，如果存在则不下载
         //这么写有bug，如果用户知道你的机制可以在你这个文件路径下创建一个文件就可以跳过广告,得加密，除非用户破解出来
         val targetFile: File = FileUtil.adFile(AppContext.instance, data.icon!!)
-        Log.d("wowoow", "downloadAd:${targetFile.absolutePath} ")
+        Log.d("yjxyjx", "downloadAd:${targetFile.absolutePath} ")
         if (targetFile.exists()) {
+            PreferenceUtil.setSplashAd(data)
             return
         }
          //我们虽然已经在协程中，但是Glide不支持协程
