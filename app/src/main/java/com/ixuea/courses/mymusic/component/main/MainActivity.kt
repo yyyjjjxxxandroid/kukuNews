@@ -1,5 +1,8 @@
 package com.ixuea.courses.mymusic.component.main
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +17,7 @@ import com.ixuea.courses.mymusic.component.UserDetailActivity.UserDetailActivity
 import com.ixuea.courses.mymusic.component.ad.Ad
 import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
 import com.ixuea.courses.mymusic.component.user.User
+import com.ixuea.courses.mymusic.component.web.WebActivity
 import com.ixuea.courses.mymusic.databinding.ActivityMainBinding
 import com.ixuea.courses.mymusic.databinding.ItemTabBinding
 
@@ -23,6 +27,7 @@ import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.superui.SuperProcessUtil
 import com.ixuea.superui.dialog.SuperDialog
 import com.ixuea.superui.extension.hide
+import com.ixuea.superui.extension.shortToast
 import com.ixuea.superui.extension.show
 import com.ixuea.superui.util.SuperDarkUtil
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
@@ -96,7 +101,23 @@ class MainActivity : BaseViewModelActivity <ActivityMainBinding>(){
     }
 
     private fun processAdClick(data: Ad) {
-        Log.d("guanggao", "processAdClick:监听广告点击事件后期用webView跳转 ")
+       if(data.uri!!.startsWith("http")){
+              val uri="https://www.taobao.com/"
+           WebActivity.start(hostActivity, uri)
+       }else{
+           //其他情况下当做应用来打开
+           try {
+               val intent=Intent(Intent.ACTION_VIEW)
+               val uri=Uri.parse("weixin://")
+//
+               intent.data=uri
+               startActivity(intent)
+
+           }catch (e:ActivityNotFoundException){
+               //没有安装应用或者或者应用不支持如此打开
+               R.string.not_found_activity.shortToast()
+           }
+       }
     }
 
     override fun initListeners() {

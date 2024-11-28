@@ -100,11 +100,12 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
            return
        }
         val intent= Intent()
-        if (PreferenceUtil.isLogin()){
-            intent.setClass(hostActivity,AdActivity::class.java)
-        }else{
-                 intent.setClass(hostActivity,MainActivity::class.java)
-        }
+        intent.setClass(hostActivity,AdActivity::class.java)
+//        if (PreferenceUtil.isLogin()){
+//            intent.setClass(hostActivity,AdActivity::class.java)
+//        }else{
+//                 intent.setClass(hostActivity,MainActivity::class.java)
+//        }
         IntentUtil.cloneIntent(getIntent(),intent)
         startActivity(intent)
         finish()

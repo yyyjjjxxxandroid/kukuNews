@@ -79,6 +79,10 @@ android {
 }
 
 dependencies {
+    //webview进度条
+    //https://github.com/youlookwhat/WebProgress
+    implementation 'com.github.youlookwhat:WebProgress:1.2.0'
+
     //给任意控件添加闪光效果
     //这里主要用到广告界面，打开广告按钮
     //https://github.com/facebook/shimmer-android
