@@ -1,10 +1,13 @@
 package com.ixuea.courses.mymusic
 
 import android.app.Application
+
 import com.drake.channel.sendEvent
 import com.ixuea.courses.mymusic.component.login.LoginStatusChangedEvent
+import com.ixuea.courses.mymusic.config.Config
 import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.tencent.mmkv.MMKV
+import timber.log.Timber
 
 //全局Application,且要去清单文件中配置
 //全局唯一性：由于 Application 类在整个应用中是单例存在的，将 MMKV 的初始化放在这里可以保证初始化操作只执行一次，确保 MMKV 在整个应用中是唯一的实例。
@@ -24,7 +27,20 @@ class AppContext : Application() {
         super.onCreate()
         //AppContext实例赋值给instance属性,AppContext.instance访问到这个全局的应用上下文
         instance = this
+        //初始化日志服务
+        initLog()
+        //初始化MMKV
         initMMKV()
+    }
+
+    private fun initLog() {
+        if (Config.DEBUG) {
+            //初始化日志服务
+           Timber.plant(Timber.DebugTree())
+        } else {
+           //可以上报到任何地方
+            //现在基本户不会打印到文件
+        }
     }
 
     private fun initMMKV() {
