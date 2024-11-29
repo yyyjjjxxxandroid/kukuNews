@@ -1,8 +1,10 @@
 package com.ixuea.courses.mymusic.component.discovery
 
+import android.content.Intent
 import android.os.Bundle
 import com.ixuea.courses.mymusic.adapter.TabLayoutViewPager2Mediator
 import com.ixuea.courses.mymusic.component.main.MainActivity
+import com.ixuea.courses.mymusic.component.publish.PublishActivity
 import com.ixuea.courses.mymusic.databinding.FragmentDiscoveryBinding
 
 import com.ixuea.courses.mymusic.fragment.BaseViewModelFragment
@@ -28,8 +30,11 @@ class DiscoveryFragment :BaseViewModelFragment<FragmentDiscoveryBinding>(){
             //通过将requireActivity()返回的 Activity 对象转换为MainActivity类型，
             // Fragment 就能够明确地访问这些在MainActivity中定义的特有功能。
             (hostActivity as MainActivity).openDrawer()
-
-
+        }
+        binding.add.setOnClickListener {
+            loginAfter{
+                startActivity(Intent(requireActivity(), PublishActivity::class.java))
+            }
         }
     }
 

@@ -10,8 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.drake.channel.receiveEvent
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.collect.Lists
 import com.ixuea.courses.mymusic.component.articledetail.ArticleDetailActivity
+import com.ixuea.courses.mymusic.component.publish.ContentChangedEvent
 import com.ixuea.courses.mymusic.databinding.FragmentContentBinding
 import com.ixuea.courses.mymusic.fragment.BaseViewModelFragment
 import com.ixuea.courses.mymusic.util.Constant
@@ -71,6 +73,8 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
                 }
             }
         }
+
+
         lifecycleScope.launch {
             viewModel.previewMedia.collect {
                 previewMedias(it)
@@ -84,6 +88,9 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
 //            }
 //        }
 //       这个就是传统写法直接请求 lifecycleScope.launch { DefaultNetworkRepository.contents()     }
+        receiveEvent<ContentChangedEvent> {
+            viewModel.loadMore()
+        }
     }
     private fun previewMedias(data: ContentViewModel.PreviewMediaPageData) {
         //将List转为ArrayList

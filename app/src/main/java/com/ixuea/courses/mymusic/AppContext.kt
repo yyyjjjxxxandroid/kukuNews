@@ -1,13 +1,15 @@
 package com.ixuea.courses.mymusic
 
 import android.app.Application
-
+import androidx.emoji.bundled.BundledEmojiCompatConfig
+import androidx.emoji.text.EmojiCompat
 import com.drake.channel.sendEvent
 import com.ixuea.courses.mymusic.component.login.LoginStatusChangedEvent
 import com.ixuea.courses.mymusic.config.Config
 import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.tencent.mmkv.MMKV
 import timber.log.Timber
+
 
 //全局Application,且要去清单文件中配置
 //全局唯一性：由于 Application 类在整个应用中是单例存在的，将 MMKV 的初始化放在这里可以保证初始化操作只执行一次，确保 MMKV 在整个应用中是唯一的实例。
@@ -31,6 +33,9 @@ class AppContext : Application() {
         initLog()
         //初始化MMKV
         initMMKV()
+//        //初始话emoji，不然直接崩溃了牢底logcat甚至找不到
+        val config: EmojiCompat.Config = BundledEmojiCompatConfig(this)
+        EmojiCompat.init(config)
     }
 
     private fun initLog() {

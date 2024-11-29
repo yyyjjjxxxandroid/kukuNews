@@ -79,6 +79,14 @@ android {
 }
 
 dependencies {
+    //emoji控件
+    implementation 'androidx.emoji:emoji-bundled:1.2.0-alpha03'
+
+    //emoji支持库，Android官方提供的Emoji兼容库，用来兼容低版本，高版本不需要使用该兼容库也可以
+    //官方提供的Eemoji组件是基于Unicode，也就是字体，所以在不同系统版本，以及不同平台显示的样式可能不一样
+    //其实就是使用图片实现emoji，就是图文混排效果，类似商品详情描述那样实现
+    implementation 'androidx.emoji:emoji-appcompat:1.2.0-alpha03'
+
     //日志框架，如果想把日志保存到文件可以用logback-android
     //https://github.com/JakeWharton/timber
     implementation 'com.jakewharton.timber:timber:5.0.1'

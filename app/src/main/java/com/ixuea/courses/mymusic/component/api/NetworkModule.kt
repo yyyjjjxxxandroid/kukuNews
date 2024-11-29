@@ -28,8 +28,9 @@ object NetworkModule {
             .writeTimeout(10, TimeUnit.SECONDS) //写，也就是将数据发送到服务端超时时间
             .readTimeout(10, TimeUnit.SECONDS) //读，将服务端的数据下载到本地
 
-        //添加公共网络请求参数拦截器
-//        okhttpClientBuilder.addInterceptor(TokenInterceptor())
+        //登入这类的一般请求头传递，其他的可能不用，但我们都加上请求头，服务端你要用就用，添加公共网络请求参数拦截器
+        //拦截器可以在请求发送到服务器之前对请求进行修改，也可以在接收到服务器响应之后对响应进行处理。对于添加请求头的操作，重点是在请求发送之前的处理。
+        okhttpClientBuilder.addInterceptor(TokenInterceptor())
 
         if (Config.DEBUG) {
             //调试模式

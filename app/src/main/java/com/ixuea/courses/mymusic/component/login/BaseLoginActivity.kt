@@ -23,4 +23,5 @@ open class BaseLoginActivity<VB:ViewBinding> : BaseTitleActivity<VB>(){
              finish()
          }
     }
+
 }

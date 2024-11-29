@@ -21,10 +21,9 @@
         android:required="false" />
 
     <application
-        tools:replace="android:theme"
-        android:allowNativeHeapPointerTagging="false"
         android:name=".AppContext"
         android:allowBackup="true"
+        android:allowNativeHeapPointerTagging="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -33,17 +32,23 @@
         android:supportsRtl="true"
         android:theme="@style/SuperUI.NoActionBar"
         android:usesCleartextTraffic="true"
+        tools:replace="android:theme"
         tools:targetApi="31">
+        <activity
+            android:name=".component.publish.PublishActivity"
+            android:exported="false"
+            android:label="@string/publish"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".component.web.WebActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:exported="false"
-            android:label=""
-            android:hardwareAccelerated="true"/>
+            android:hardwareAccelerated="true"
+            android:label="" />
         <activity
             android:name=".component.ad.AdActivity"
             android:exported="false"
-            android:hardwareAccelerated="true"/>
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".component.input.InputCodeActivity"
             android:exported="false"

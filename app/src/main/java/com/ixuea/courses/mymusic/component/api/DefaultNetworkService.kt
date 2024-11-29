@@ -83,6 +83,9 @@ interface DefaultNetworkService {
         @Query(value = "style") style: Int?
     ): ListResponse<Ad>
 
+    @POST("v1/contents")
+    suspend fun createContent(@Body data:Content):DetailResponse<BaseId>
+
 
 
     companion object {

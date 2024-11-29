@@ -4,8 +4,10 @@ package com.ixuea.courses.mymusic.activity
 
 import com.ixuea.courses.mymusic.AppContext
 import com.ixuea.courses.mymusic.R
+import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
 import com.ixuea.courses.mymusic.entity.response.BaseResponse
 import com.ixuea.courses.mymusic.model.BaseViewModel
+import com.ixuea.courses.mymusic.util.PreferenceUtil
 import com.ixuea.superui.extension.longToast
 import com.ixuea.superui.extension.shortToast
 import com.ixuea.superui.util.SuperDarkUtil
@@ -158,5 +160,23 @@ open class BaseLogicActivity:BaseCommonActivity() {
     private fun handleHttpError(data: HttpException) {
        AppContext.instance.getString(R.string.error_server_unknown_code,data.code()).longToast()
 
+    }
+
+    /**
+     * 只要用户登录了，才会执行代码块
+     *
+     * @param data
+     */
+    fun loginAfter(data: Runnable) {
+        if (PreferenceUtil.isLogin()) {
+            //已经登录了
+            data.run()
+        } else {
+            hostActivity.toLogin()
+        }
+    }
+
+    fun toLogin() {
+        startActivity(LoginHomeActivity::class.java)
     }
 }

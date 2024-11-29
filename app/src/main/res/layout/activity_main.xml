@@ -148,6 +148,18 @@
                             android:text="拉下状态栏在通知中既可查看，记得打开通知权限！！！！！！！！！"
                             android:textColor="@color/vip_border"
                             android:textSize="@dimen/text_small" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="首页前面几条内容服务端更改了创建日期固定在前面的，使用发布功能的话会刷新在下面几条"
+                            android:textColor="@color/vip_border"
+                            android:textSize="@dimen/text_small" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="有些图片没显示，是服务端那边的问题，客服端都是有发送网络请求的，服务端返回的图片有问题并非随便放咯一张"
+                            android:textColor="@color/vip_border"
+                            android:textSize="@dimen/text_small" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
