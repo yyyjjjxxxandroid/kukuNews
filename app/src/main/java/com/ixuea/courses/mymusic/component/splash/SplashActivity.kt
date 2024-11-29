@@ -66,10 +66,10 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-//                Manifest.permission.READ_PHONE_STATE,
-////                Manifest.permission.READ_MEDIA_AUDIO,
-//                Manifest.permission.READ_MEDIA_IMAGES,
-//                Manifest.permission.READ_MEDIA_VIDEO,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.READ_MEDIA_AUDIO,
+                Manifest.permission.READ_MEDIA_IMAGES,
+                Manifest.permission.READ_MEDIA_VIDEO,
             )
         } else {
             PermissionX.init(this).permissions(
@@ -77,9 +77,9 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-//                Manifest.permission.READ_PHONE_STATE,
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
             )
         }.request { allGranted, grantedList, deniedList ->
             if (allGranted) {

@@ -186,22 +186,24 @@ class PublishViewModel() : BaseViewModel() {
         }
     }
 
-//    fun loadData() {
-//        setData(ArrayList())
-//    }
 
-//    fun setLocation(data: Any) {
-//        _selectPosition.value = data
-//    }
 
-//    fun setData(datum: MutableList<Any>) {
-//        if (datum.size < 9) {
-//            //添加选择图片按钮
-//            datum.add(R.drawable.add_fill)
-//        }
-//
-//        viewModelScope.launch {
-//            _data.emit(datum)
-//        }
-//    }
+    fun loadData() {
+        setData(ArrayList())
+    }
+
+    fun setLocation(data: Any) {
+        _selectPosition.value = data
+    }
+
+    fun setData(datum: MutableList<Any>) {
+        if (datum.size < 9) {
+            //添加选择图片按钮
+            datum.add(R.drawable.add_fill)
+        }
+
+        viewModelScope.launch {
+            _data.emit(datum)
+        }
+    }
 }
