@@ -2,6 +2,7 @@ package com.ixuea.courses.mymusic.activity
 
 
 
+import android.util.Log
 import com.ixuea.courses.mymusic.AppContext
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.component.login.LoginHomeActivity
@@ -12,9 +13,11 @@ import com.ixuea.superui.extension.longToast
 import com.ixuea.superui.extension.shortToast
 import com.ixuea.superui.util.SuperDarkUtil
 import com.ixuea.superui.util.SuperNetworkUtil
+import com.loading.dialog.IOSLoadingDialog
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import org.apache.commons.lang3.StringUtils
 import retrofit2.HttpException
+import java.lang.ref.WeakReference
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -24,6 +27,8 @@ import java.net.UnknownHostException
 * 本项目的通用逻辑，例如：背景颜色等。
 * */
 open class BaseLogicActivity:BaseCommonActivity() {
+    private var loadingDialog: WeakReference<IOSLoadingDialog>? = null
+    //这样写的好处WeakReference包装到这个类里面 是弱引用 当activity释放时这个也会跟着释放
    protected val hostActivity:BaseLogicActivity
      protected  get() = this
     //class Person {
@@ -68,9 +73,9 @@ open class BaseLogicActivity:BaseCommonActivity() {
         }
 
         //加载提示
-//        viewModel.loading.observe(this) {
-//            if (StringUtils.isNotBlank(it)) showLoading(it) else hideLoading()
-//        }
+        viewModel.loading.observe(this) {
+            if (StringUtils.isNotBlank(it)) showLoading(it) else hideLoading()
+        }
     }
 
     open fun onTip(data: Int) {
@@ -179,4 +184,39 @@ open class BaseLogicActivity:BaseCommonActivity() {
     fun toLogin() {
         startActivity(LoginHomeActivity::class.java)
     }
+
+    //region 加载提示
+    /**
+     * 显示加载对话框
+     */
+    open fun showLoading(data: Int) {
+        showLoading(getString(data))
+    }
+
+    /**
+     * 显示加载对话框
+     */
+    open fun showLoading(data: String = getString(R.string.loading)) {
+        if (loadingDialog == null || loadingDialog!!.get() == null) {
+            loadingDialog = WeakReference(
+                IOSLoadingDialog()
+                    .setOnTouchOutside(false)
+
+            )
+        }
+
+        val dialogData = loadingDialog!!.get()
+        dialogData?.setHintMsg(data)
+        if (dialogData!!.dialog == null || !dialogData!!.dialog!!.isShowing) {
+            dialogData!!.show(supportFragmentManager, "LoadingDialog")
+        }
+    }
+
+    /**
+     * 隐藏加载对话框
+     */
+    fun hideLoading() {
+        loadingDialog?.get()?.dismiss()
+    }
+    //endregion
 }
