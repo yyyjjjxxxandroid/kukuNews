@@ -1,30 +1,29 @@
 package com.ixuea.courses.mymusic.component.publish
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 
 import com.ixuea.courses.mymusic.AppContext
-import com.ixuea.courses.mymusic.BuildConfig
+
 import com.ixuea.courses.mymusic.R
+import com.ixuea.courses.mymusic.component.aliyunoss.AliyunOSSService
+import com.ixuea.courses.mymusic.component.aliyunoss.UploadResult
+import com.ixuea.courses.mymusic.component.aliyunoss.onProgress
+import com.ixuea.courses.mymusic.component.aliyunoss.onSuccess
 
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.entity.response.onSuccess
 import com.ixuea.courses.mymusic.model.BaseViewModel
 import com.ixuea.courses.mymusic.repository.DefaultNetworkRepository
-import com.ixuea.courses.mymusic.util.Constant
+import com.luck.picture.lib.entity.LocalMedia
 
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.apache.commons.lang3.StringUtils
 import timber.log.Timber
 import java.io.File
@@ -33,7 +32,7 @@ import java.io.File
  * 发布动态界面ViewModel
  */
 class PublishViewModel() : BaseViewModel() {
-//    private lateinit var medias: List<LocalMedia>
+    private lateinit var medias: List<LocalMedia>
     private var uploadMedias: List<String>? = null
 
     private val _success = MutableSharedFlow<Boolean>()
@@ -47,9 +46,9 @@ class PublishViewModel() : BaseViewModel() {
 
     private val param: Content = Content()
 
-    fun sendClick(content: String) {
-//        , medias: List<LocalMedia>
-//        this.medias = medias
+    fun sendClick(content: String,  medias: List<LocalMedia>) {
+
+        this.medias = medias
         param.content = content
 
         //判断是否输入了
@@ -63,19 +62,19 @@ class PublishViewModel() : BaseViewModel() {
             _tip.value = R.string.error_content_length
             return
         }
-          save()
-//        //获取选中的图片
-//        if (medias.isNotEmpty()) {
-//            //有图片
-//
-//            //先上传图片
-//            uploadMedia()
-//        } else {
-//            //没有图片
-//
-//            //直接发布
-//            save()
-//        }
+
+        //获取选中的图片
+        if (medias.isNotEmpty()) {
+            //有图片
+
+            //先上传图片
+            uploadMedia()
+        } else {
+            //没有图片
+
+            //直接发布
+            save()
+        }
     }
 
 
@@ -123,13 +122,15 @@ class PublishViewModel() : BaseViewModel() {
 //            emit(UploadResult.Success(results))
 //        }.flowOn(Dispatchers.IO) //通过flowOn方法切换到io线程
 //    }
-//
-//    private fun uploadMedia() {
-//        viewModelScope.launch(coroutineExceptionHandler) {
+
+    private fun uploadMedia() {
+        viewModelScope.launch(coroutineExceptionHandler) {
 //            uploads(medias)
+//                //collect：按顺序依次完整处理 Flow 发出的元素，若前一元素处理耗时，后续元素需等其处理完才开始处理，是顺序处理方式。如上述示例用 collect 替换 collectLatest，元素会依次等待前一元素 2 秒处理结束后再处理自身。
+//                //collectLatest：侧重及时响应最新数据，会中断旧元素处理优先处理新元素，适用于实时消息推送展示、动态更新图表等对实时性和最新数据展示要求高的场景，可避免被旧数据处理流程耽搁而快速切换到新数据处理。
 //                .collectLatest {
 //                    it.onProgress {
-//                        Timber.d("upload media progress %d", it)
+//                        Log.d("upload media progress %d", it)
 //                        _loading.value =
 //                            AppContext.instance.getString(R.string.loading_upload, it + 1)
 //                    }
@@ -143,29 +144,28 @@ class PublishViewModel() : BaseViewModel() {
 //                    }
 //                }
 
-            //上传到阿里云
-//            AliyunOSSService.getInstance(AppContext.instance)
-//                .upload(medias)
-//                .collectLatest {
-//                    it.onProgress {
-//                        Timber.d("upload media progress %d", it)
-//                        _loading.value =
-//                            AppContext.instance.getString(R.string.loading_upload, it + 1)
-//                    }
-//                    it.onSuccess {
-//                        uploadMedias = it
-//                        _loading.value = null
-//                        save()
-//                    }
-//                }
-//        }
-//    }
+//            上传到阿里云
+            AliyunOSSService.getInstance(AppContext.instance)
+                .upload(medias)
+                .collectLatest { it ->
+                    it.onProgress {
+                        Timber.d("upload media progress %d", it)
+                        _loading.value = AppContext.instance.getString(R.string.loading_upload, it + 1)
+                    }
+                    it.onSuccess {
+                        uploadMedias = it
+                        _loading.value = null
+                        save()
+                    }
+                }
+        }
+    }
 
     private fun save() {
 
-//        uploadMedias?.let {
-//            param.icon = it.joinToString(",")
-//        }
+        uploadMedias?.let {
+            param.icon = it.joinToString(",")
+        }
 //
 //        (selectPosition.value as? PoiItem)?.let {
 //            //地理位置信息

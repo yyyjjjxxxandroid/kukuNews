@@ -157,7 +157,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="有些图片没显示，是服务端那边的问题，客服端都是有发送网络请求的，服务端返回的图片有问题并非随便放咯一张"
+                            android:text="有些图片没显示（服务端因费用问题，包括自己发布内容，只有文字会有显示，图片而是服务端会传一个默认图片过来，图片是发送到阿里云oss存，有图片文字发送功能，然后服务端再返内容回来），是服务端那边的问题，客服端都是有发送网络请求的，服务端返回的图片有问题并非随便放咯一张"
                             android:textColor="@color/vip_border"
                             android:textSize="@dimen/text_small" />
                     </LinearLayout>

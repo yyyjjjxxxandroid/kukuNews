@@ -2,14 +2,8 @@ package com.ixuea.courses.mymusic.component.publish
 
 import android.content.Context
 import android.net.Uri
-import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -201,9 +195,21 @@ class PublishActivity : BaseTitleActivity<ActivityPublishBinding>() {
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.publish) {
-            viewModel.sendClick(binding.content.text.toString().trim())
+            viewModel.sendClick(binding.content.text.toString().trim(),selectImages)
             return true
         }
         return super.onOptionsItemSelected(item)
     }
+    //获取选中的图片
+    private val selectImages: List<LocalMedia>
+       get() {
+           val data: List<Any> = adapter.items
+            val datum:MutableList<LocalMedia> = ArrayList<LocalMedia>()
+            for (o in data){
+                if (o is LocalMedia){
+                    datum.add(o as LocalMedia)//只要我们用的图片框架的图片类型 加好那个是int类型不用
+                }
+            }
+            return datum
+        }
 }

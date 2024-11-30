@@ -79,6 +79,11 @@ android {
 }
 
 dependencies {
+    //阿里云oss
+    //官方文档：https://help.aliyun.com/document_detail/32043.html
+    //sdk地址：https://github.com/aliyun/aliyun-oss-android-sdk
+    implementation 'com.aliyun.dpa:oss-android-sdk:2.9.13'
+
     //Google实现的Java核心工具类
     //相对于Apache的工具包来说
     //Apache更多的用在Java Web项目
