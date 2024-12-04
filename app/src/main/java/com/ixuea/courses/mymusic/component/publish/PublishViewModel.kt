@@ -6,24 +6,35 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 
 import com.ixuea.courses.mymusic.AppContext
+import com.ixuea.courses.mymusic.BuildConfig
 
 import com.ixuea.courses.mymusic.R
 import com.ixuea.courses.mymusic.component.aliyunoss.AliyunOSSService
 import com.ixuea.courses.mymusic.component.aliyunoss.UploadResult
+import com.ixuea.courses.mymusic.component.aliyunoss.onFailure
 import com.ixuea.courses.mymusic.component.aliyunoss.onProgress
 import com.ixuea.courses.mymusic.component.aliyunoss.onSuccess
 
 import com.ixuea.courses.mymusic.component.content.Content
 import com.ixuea.courses.mymusic.entity.response.onSuccess
+import com.ixuea.courses.mymusic.exception.CommonException
 import com.ixuea.courses.mymusic.model.BaseViewModel
 import com.ixuea.courses.mymusic.repository.DefaultNetworkRepository
+import com.ixuea.courses.mymusic.util.Constant
+import com.ixuea.courses.mymusic.util.MimeTypes
 import com.luck.picture.lib.entity.LocalMedia
+import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.apache.commons.lang3.StringUtils
 import timber.log.Timber
 import java.io.File
@@ -78,59 +89,76 @@ class PublishViewModel() : BaseViewModel() {
     }
 
 
-//    fun uploads(data: List<LocalMedia>): Flow<UploadResult<List<String>>> {
-//        return flow<UploadResult<List<String>>> {
-////            emit(UploadResult.OnProgress(0))
-////            delay(1000)
-////            emit(UploadResult.OnProgress(1))
-////            delay(1000)
-////            emit(UploadResult.Success())
-//
-//            //创建结果数组
-//            val results = mutableListOf<String>()
-//
-//            data.forEachIndexed { index, it ->
-//                emit(UploadResult.onProgress(index))
-//
-//                val file = File(if (StringUtils.isNotBlank(it.compressPath)) it.compressPath else it.realPath)
-//
-//                //文件表单项
-//                val fileBody =
-//                    file.asRequestBody(MimeTypes.IMAGE_ANY.toMediaType())
-//                val multipartBody =
-//                    MultipartBody.Part.createFormData("data", file.getName(), fileBody)
-//
-//                //渠道项
-//                val flavorBody =
-//                    BuildConfig.FLAVOR.toRequestBody(MimeTypes.MULTIPART_FORM_DATA.toMediaType())
-//
-//                val targetResult = DefaultNetworkRepository.uploadFile(
-//                    multipartBody,
-//                    flavorBody,
-//                    Constant.VALUE1.toString()
-//                        .toRequestBody(MimeTypes.MULTIPART_FORM_DATA.toMediaType())
-//                )
-//
-//                if (!targetResult.isSucceeded) {
-//                    emit(UploadResult.Failure(CommonException(targetResult)))
-//                    return@flow
-//                }
-//
-//                results.add(targetResult.data!!.id)
-//            }
-//
-//            emit(UploadResult.Success(results))
-//        }.flowOn(Dispatchers.IO) //通过flowOn方法切换到io线程
-//    }
+    fun uploads(data: List<LocalMedia>): Flow<UploadResult<List<String>>> {
+        return flow<UploadResult<List<String>>> {
+//            emit(UploadResult.OnProgress(0))
+//            delay(1000)
+//            emit(UploadResult.OnProgress(1))
+//            delay(1000)
+//            emit(UploadResult.Success())
+
+            //创建结果数组
+            val results = mutableListOf<String>()
+
+            data.forEachIndexed { index, it ->
+                emit(UploadResult.onProgress(index))
+
+                val file = File(if (StringUtils.isNotBlank(it.compressPath)) it.compressPath else it.realPath)
+
+                //文件表单项
+                val fileBody =
+                    file.asRequestBody(MimeTypes.IMAGE_ANY.toMediaType())
+                val multipartBody =
+                    MultipartBody.Part.createFormData("data", file.getName(), fileBody)
+
+                //渠道项
+                val flavorBody =
+                    BuildConfig.FLAVOR.toRequestBody(MimeTypes.MULTIPART_FORM_DATA.toMediaType())
+
+                val targetResult = DefaultNetworkRepository.uploadFile(
+                    multipartBody,
+                    flavorBody,
+                    Constant.VALUE1.toString()
+                        .toRequestBody(MimeTypes.MULTIPART_FORM_DATA.toMediaType())
+                )
+
+                if (!targetResult.isSucceeded) {
+                    emit(UploadResult.Failure(CommonException(targetResult)))
+                    return@flow
+                }
+
+                results.add(targetResult.data!!.id!!)
+            }
+
+            emit(UploadResult.Success(results))
+        }.flowOn(Dispatchers.IO) //通过flowOn方法切换到io线程
+    }
 
     private fun uploadMedia() {
         viewModelScope.launch(coroutineExceptionHandler) {
-//            uploads(medias)
-//                //collect：按顺序依次完整处理 Flow 发出的元素，若前一元素处理耗时，后续元素需等其处理完才开始处理，是顺序处理方式。如上述示例用 collect 替换 collectLatest，元素会依次等待前一元素 2 秒处理结束后再处理自身。
-//                //collectLatest：侧重及时响应最新数据，会中断旧元素处理优先处理新元素，适用于实时消息推送展示、动态更新图表等对实时性和最新数据展示要求高的场景，可避免被旧数据处理流程耽搁而快速切换到新数据处理。
+            uploads(medias)
+                .collectLatest {
+                    it.onProgress {
+                        Timber.d("upload media progress %d", it)
+                        _loading.value =
+                            AppContext.instance.getString(R.string.loading_upload, it + 1)
+                    }
+                    it.onSuccess {
+                        uploadMedias = it
+                        _loading.value = null
+                        save()
+                    }
+                    it.onFailure {
+                        _loading.value = null
+                    }
+                }
+
+            //上传到阿里云
+//            AliyunOSSService.getInstance(AppContext.instance)
+//                .upload(medias)
 //                .collectLatest {
 //                    it.onProgress {
-//                        Log.d("upload media progress %d", it)
+//                        Timber.d("upload media progress %d", it)
 //                        _loading.value =
 //                            AppContext.instance.getString(R.string.loading_upload, it + 1)
 //                    }
@@ -139,25 +167,7 @@ class PublishViewModel() : BaseViewModel() {
 //                        _loading.value = null
 //                        save()
 //                    }
-//                    it.onFailure {
-//                        _loading.value = null
-//                    }
 //                }
-
-//            上传到阿里云
-            AliyunOSSService.getInstance(AppContext.instance)
-                .upload(medias)
-                .collectLatest { it ->
-                    it.onProgress {
-                        Timber.d("upload media progress %d", it)
-                        _loading.value = AppContext.instance.getString(R.string.loading_upload, it + 1)
-                    }
-                    it.onSuccess {
-                        uploadMedias = it
-                        _loading.value = null
-                        save()
-                    }
-                }
         }
     }
 

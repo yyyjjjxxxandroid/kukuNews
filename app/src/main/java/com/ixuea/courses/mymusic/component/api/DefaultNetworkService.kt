@@ -10,9 +10,13 @@ import com.ixuea.courses.mymusic.entity.Base
 import com.ixuea.courses.mymusic.entity.BaseId
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 /*
@@ -86,6 +90,34 @@ interface DefaultNetworkService {
     @POST("v1/contents")
     suspend fun createContent(@Body data:Content):DetailResponse<BaseId>
 
+    /**
+     * 上传文件
+     * @param file 文件
+     * @param flavor 渠道，例如：客户端会传递prod，dev，local等值，服务端方便保存到不同地方，这样后面好清理测试资源
+     * @param relative 0：返回绝对路径，默认；1：返回相对路径
+     * @return
+     */
+    @Multipart
+    @POST("v1/r")
+    suspend fun uploadFile(
+        @Part file: MultipartBody.Part,
+        @Part("flavor") flavor: RequestBody,
+        @Part("relative") relative: RequestBody,
+    ): DetailResponse<BaseId>
+
+    /**
+     * 上传多个文件
+     * @param file 文件
+     * @param flavor 渠道，例如：客户端会传递prod，dev，local等值，服务端方便保存到不同地方，这样后面好清理测试资源
+     * @return
+     */
+    @Multipart
+    @POST("v1/r/batch")
+    suspend fun uploadFiles(
+        @Part files: List<MultipartBody.Part>,
+        @Part("flavor") flavor: RequestBody,
+        @Part("relative") relative: RequestBody,
+    ): ListResponse<String>
 
 
     companion object {

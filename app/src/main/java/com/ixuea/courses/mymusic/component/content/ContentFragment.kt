@@ -74,6 +74,18 @@ class ContentFragment: BaseViewModelFragment<FragmentContentBinding>() {
             }
         }
 
+        //点击带视频的item监听点击视频的监听点击视频的监听点击视频的监听点击视频的监听后续实现后续实现后续实现后续实现后续实现后续实现后续实现后续实现后续实现后续实现
+        lifecycleScope.launch {
+            //用于确保在Lifecycle对象处于特定状态（这里是STARTED状态）时，协程块内的代码能够被重复执行。其实加了没意义就是试试
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.toCourseDetail.collect{ id->
+                    val intent= Intent(requireContext(), ArticleDetailActivity::class.java)
+                    intent.putExtra(Constant.ID,id)
+                    startActivity(intent)
+                }
+            }
+        }
+
 
         lifecycleScope.launch {
             viewModel.previewMedia.collect {

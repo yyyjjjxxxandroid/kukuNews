@@ -163,7 +163,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="目前只有点击纯文字的item有详情，其他的待开发"
+                            android:text="视频模块还待开发"
                             android:textColor="@color/vip_border"
                             android:textSize="@dimen/text_small" />
                     </LinearLayout>

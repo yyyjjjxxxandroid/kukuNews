@@ -11,6 +11,8 @@ import com.ixuea.courses.mymusic.entity.Base
 import com.ixuea.courses.mymusic.entity.BaseId
 import com.ixuea.courses.mymusic.entity.response.DetailResponse
 import com.ixuea.courses.mymusic.entity.response.ListResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Query
 
 /*
@@ -65,5 +67,16 @@ object DefaultNetworkRepository {
     suspend fun createContent(data:Content):DetailResponse<BaseId>{
         return service.createContent(data)
     }
+    suspend fun uploadFile(
+        file: MultipartBody.Part,
+        flavor: RequestBody,
+        relative: RequestBody
+    ) = service.uploadFile(file, flavor, relative)
+
+    suspend fun uploadFiles(
+        files: List<MultipartBody.Part>,
+        flavor: RequestBody,
+        relative: RequestBody
+    ) = service.uploadFiles(files, flavor, relative)
 
 }

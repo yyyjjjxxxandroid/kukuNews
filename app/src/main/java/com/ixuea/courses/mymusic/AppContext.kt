@@ -33,7 +33,7 @@ class AppContext : Application() {
         initLog()
         //初始化MMKV
         initMMKV()
-//        //初始话emoji，不然直接崩溃了牢底logcat甚至找不到
+    //初始话emoji，不然直接崩溃了牢底logcat甚至找不到
         val config: EmojiCompat.Config = BundledEmojiCompatConfig(this)
         EmojiCompat.init(config)
     }
